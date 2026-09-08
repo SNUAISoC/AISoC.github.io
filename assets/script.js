@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   if (window.lucide) window.lucide.createIcons();
+  document.body.classList.add("page-transition");
 
   const header = document.querySelector("[data-header]");
   const menuToggle = document.querySelector(".menu-toggle");
@@ -30,6 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+
+  document.querySelectorAll("a.page-link").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin !== window.location.origin || destination.href === window.location.href) return;
+      event.preventDefault();
+      document.body.classList.add("page-leaving");
+      window.setTimeout(() => { window.location.href = destination.href; }, 170);
+    });
+  });
 
   const tabs = [...document.querySelectorAll("[data-research]")];
   const panels = [...document.querySelectorAll("[data-panel]")];

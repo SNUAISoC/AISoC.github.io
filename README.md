@@ -2,6 +2,8 @@
 
 Static GitHub Pages website for the AI System-on-Chip Laboratory at Seoul National University.
 
+The site uses separate static pages for Home, Research, Professor, Publications, and Join Us. Shared visual styles and navigation live in `assets/`.
+
 ## Preview locally
 
 Open `index.html` directly, or run a static server from this directory:
