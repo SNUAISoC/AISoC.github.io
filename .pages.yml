@@ -1,0 +1,142 @@
+media:
+  input: assets/images
+  output: /assets/images
+  categories:
+    - image
+  rename: safe
+
+settings:
+  content:
+    merge: true
+
+  commit:
+    identity: user
+    templates:
+      create: "CMS: create {path}"
+      update: "CMS: update {path}"
+      delete: "CMS: delete {path}"
+      rename: "CMS: rename {oldPath} -> {newPath}"
+
+content:
+
+  # ============================================================
+  # WEBSITE PAGES
+  # ============================================================
+
+  - name: website
+    label: Website Pages
+    type: group
+
+    items:
+
+      - name: home
+        label: Home
+        type: file
+        path: index.html
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+      - name: research
+        label: Research
+        type: file
+        path: research.html
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+      - name: professor
+        label: Professor
+        type: file
+        path: professor.html
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+      - name: publications
+        label: Publications
+        type: file
+        path: publications.html
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+      - name: join
+        label: Join Us
+        type: file
+        path: join.html
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+
+  # ============================================================
+  # WEBSITE DESIGN / DEVELOPER FILES
+  # ============================================================
+
+  - name: developer
+    label: Developer Files
+    type: group
+
+    items:
+
+      - name: styles
+        label: Main CSS
+        type: file
+        path: assets/styles.css
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+      - name: multipage_styles
+        label: Page CSS
+        type: file
+        path: assets/multipage.css
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+      - name: javascript
+        label: JavaScript
+        type: file
+        path: assets/script.js
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
+
+
+  # ============================================================
+  # DOCUMENTATION
+  # ============================================================
+
+  - name: documentation
+    label: Documentation
+    type: group
+
+    items:
+
+      - name: readme
+        label: README
+        type: file
+        path: README.md
+        format: code
+        operations:
+          create: false
+          rename: false
+          delete: false
