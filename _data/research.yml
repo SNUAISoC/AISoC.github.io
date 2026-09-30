@@ -1,0 +1,49 @@
+page_index: 01 / Research
+page_index_detail: Architecture → VLSI → Silicon
+hero_line1: One stack.
+hero_emphasis: Four lenses.
+hero_lead: We investigate specialized hardware systems for next-generation computing, spanning the full path from AI workloads to working silicon.
+intro_kicker_label: Approach
+intro_kicker_text: System-level thinking
+intro_heading_before: The most important opportunities live
+intro_heading_emphasis: between
+intro_heading_after: layers.
+intro_paragraphs:
+  - We connect computer architecture, VLSI design, memory systems, and software instead of optimizing each layer in isolation.
+  - "Our goal is practical: higher performance and scalability with less energy and unnecessary data movement."
+areas:
+  - icon: brain-circuit
+    title_line1: Deep Learning
+    title_line2: Accelerators
+    description: Purpose-built neural processing engines that adapt to model structure, numerical precision, and sparsity for high-throughput, energy-efficient inference.
+    topics:
+      - Neural processing units
+      - Mixed-precision datapaths
+      - Sparsity-aware architecture
+  - icon: cpu
+    title_line1: AI
+    title_line2: System-on-Chip
+    description: Complete digital systems that combine processors, memory, interconnects, and control for demanding AI workloads under real power and area constraints.
+    topics:
+      - Low-power digital SoC
+      - Application-specific processors
+      - Scalable system architecture
+  - icon: database-zap
+    title_line1: Processing-
+    title_line2: in-Memory
+    description: Memory-centric architectures that reduce the movement of data — one of the dominant energy and performance costs in modern AI computing.
+    topics:
+      - In-memory processing
+      - Memory-centric architecture
+      - Bandwidth-efficient systems
+  - icon: blocks
+    title_line1: Hardware–Software
+    title_line2: Co-design
+    description: Cross-layer systems where workload insight guides architecture and hardware capability is exposed effectively through compilers and software.
+    topics:
+      - Workload characterization
+      - Compiler-aware architecture
+      - Cross-layer optimization
+question_kicker_label: Question
+question_kicker_text: What drives us
+question: How can future AI systems compute more — while moving less data and spending less energy?

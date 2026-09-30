@@ -1,0 +1,26 @@
+<header class="site-header{% unless include.home %} is-scrolled{% endunless %}" data-header>
+  <a class="brand{% unless include.home %} page-link{% endunless %}" href="index.html" aria-label="AI SoC Lab home">
+    <img class="brand-logo" src="{{ site.data.site.logo }}" alt="AI SOC — Artificial Intelligence System on Chip Laboratory">
+  </a>
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <a{% unless include.active == "research" %} class="page-link"{% endunless %} href="research.html"{% if include.active == "research" %} aria-current="page"{% endif %}>Research</a>
+    <a{% unless include.active == "professor" %} class="page-link"{% endunless %} href="professor.html"{% if include.active == "professor" %} aria-current="page"{% endif %}>Professor</a>
+    <a{% unless include.active == "publications" %} class="page-link"{% endunless %} href="publications.html"{% if include.active == "publications" %} aria-current="page"{% endif %}>Publications</a>
+    <a{% unless include.active == "join" %} class="page-link"{% endunless %} href="join.html"{% if include.active == "join" %} aria-current="page"{% endif %}>Join us</a>
+  </nav>
+  {% if include.active == "join" %}
+  <a class="header-cta" href="mailto:{{ site.data.site.email }}">Email <i data-lucide="mail"></i></a>
+  {% else %}
+  <a class="header-cta page-link" href="join.html">Contact <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+  {% endif %}
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+    <i data-lucide="menu" aria-hidden="true"></i><span>Menu</span>
+  </button>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a{% unless include.active == "research" %} class="page-link"{% endunless %} href="research.html">Research</a>
+    <a{% unless include.active == "professor" %} class="page-link"{% endunless %} href="professor.html">Professor</a>
+    <a{% unless include.active == "publications" %} class="page-link"{% endunless %} href="publications.html">Publications</a>
+    <a{% unless include.active == "join" %} class="page-link"{% endunless %} href="join.html">Join us</a>
+    <a href="mailto:{{ site.data.site.email }}">{{ site.data.site.email }}</a>
+  </div>
+</header>

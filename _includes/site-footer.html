@@ -1,0 +1,31 @@
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <a href="index.html"><img class="footer-logo" src="{{ site.data.site.logo }}" alt="AI SOC Laboratory"></a>
+      <p>{{ site.data.site.footer_tagline_line1 }}<br>{{ site.data.site.footer_tagline_line2 }}</p>
+    </div>
+    <div>
+      <p class="mono">VISIT</p>
+      <address>{% for line in site.data.site.address %}{{ line }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</address>
+      {% if include.show_map %}
+      <a class="text-link" href="{{ site.data.site.map_url }}" target="_blank" rel="noopener">Open map <i data-lucide="map-pin" aria-hidden="true"></i></a>
+      {% endif %}
+    </div>
+    <div>
+      <p class="mono">CONTACT</p>
+      <a href="mailto:{{ site.data.site.email }}">{{ site.data.site.email }}</a>
+      <a href="tel:{{ site.data.site.phone_href }}">{{ site.data.site.phone_display }}</a>
+    </div>
+    <div class="footer-nav">
+      <p class="mono">NAVIGATE</p>
+      <a href="research.html">Research</a>
+      <a href="professor.html">Professor</a>
+      <a href="publications.html">Publications</a>
+      <a href="join.html">Join us</a>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <p>© <span data-year></span> {{ site.data.site.copyright }}</p>
+    <a href="{{ include.back_target | default: '#main' }}">Back to top <i data-lucide="arrow-up" aria-hidden="true"></i></a>
+  </div>
+</footer>

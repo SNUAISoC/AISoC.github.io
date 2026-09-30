@@ -1,0 +1,27 @@
+page_index: 04 / Join us
+page_index_detail: Graduate research
+recruiting_status: Recruiting now
+hero_line1: Build the machine
+hero_emphasis: behind intelligence.
+hero_lead: We are recruiting interns for 2027 Fall and 2028 Spring graduate school admissions.
+who_kicker_label: Who
+who_kicker_text: We are looking for
+who_heading: Curious engineers who want to shape how AI computes.
+who_description: We welcome highly motivated students with a strong background in electrical and electronic engineering. Experience is valuable, but intellectual curiosity and the willingness to build carefully matter just as much.
+fit_items:
+  - AI processors and neural accelerators
+  - Computer architecture and digital systems
+  - VLSI and low-power circuit design
+  - Hardware–software co-design
+apply_kicker_label: Apply
+apply_kicker_text: Start a conversation
+steps:
+  - title: Introduce yourself
+    description: Tell us your degree program, current stage, and the admission semester you are considering.
+  - title: Share your interests
+    description: Briefly explain which AI hardware or system problem you would like to explore.
+  - title: Attach your résumé
+    description: Include education, relevant projects, technical skills, and any publications or tape-out experience.
+cta_text: Send your résumé directly to
+cta_name: Professor Jun-Seok Park
+email_subject: AI SoC Lab Graduate Inquiry

@@ -1,0 +1,36 @@
+page_index: 02 / Professor
+page_index_detail: Principal Investigator
+name_en: Jun-Seok Park
+name_ko: 박준석
+position: Assistant Professor · Department of Electrical and Computer Engineering · Seoul National University
+image: /assets/images/prof-junseok-park.jpg
+portrait_caption: Jun-Seok Park, Ph.D.
+portrait_subcaption: AI SoC Laboratory · SNU ECE
+story_primary_before: Professor Park's work seeks new ways to make intelligent computing
+story_primary_emphasis: faster, more efficient, and more scalable
+story_primary_after: — from digital circuits to complete AI systems.
+story_secondary: Before joining Seoul National University, he spent eleven years at Samsung Electronics' System LSI division, developing advanced mobile system-on-chip technologies. His research combines that silicon experience with a system-level academic perspective.
+interests:
+  - Low-power, high-performance digital SoC design
+  - Application-specific processors
+  - Accelerators and systems-on-chip for AI
+  - Hardware–software co-design
+official_profile_url: "https://ece.snu.ac.kr/en/research-faculty/faculty/fulltime?md=view&profid=p920"
+career_kicker_label: Career
+career_kicker_text: Education & industry
+career:
+  - period: 2022–2026
+    role: Principal Engineer
+    organization: System LSI, Samsung Electronics
+  - period: 2015–2022
+    role: Staff Engineer
+    organization: System LSI, Samsung Electronics
+  - period: 2011–2015
+    role: Ph.D. in Electrical Engineering
+    organization: Korea Advanced Institute of Science and Technology
+  - period: 2009–2011
+    role: M.S. in Electrical Engineering
+    organization: Korea Advanced Institute of Science and Technology
+  - period: 2004–2009
+    role: B.S. in Electrical Engineering
+    organization: Korea Advanced Institute of Science and Technology

@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,24 +13,45 @@
 </head>
 <body class="home-page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" data-header>
-    <a class="brand" href="index.html" aria-label="AI SoC Lab home"><img class="brand-logo" src="assets/images/aisoc-logo-transparent.png" alt="AI SOC — Artificial Intelligence System on Chip Laboratory"></a>
-    <nav class="desktop-nav" aria-label="Primary navigation"><a class="page-link" href="research.html">Research</a><a class="page-link" href="professor.html">Professor</a><a class="page-link" href="publications.html">Publications</a><a class="page-link" href="join.html">Join us</a></nav>
-    <a class="header-cta page-link" href="join.html">Contact <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><i data-lucide="menu" aria-hidden="true"></i><span>Menu</span></button>
-    <div class="mobile-menu" id="mobile-menu" hidden><a class="page-link" href="research.html">Research</a><a class="page-link" href="professor.html">Professor</a><a class="page-link" href="publications.html">Publications</a><a class="page-link" href="join.html">Join us</a><a href="mailto:junseok.park@snu.ac.kr">junseok.park@snu.ac.kr</a></div>
-  </header>
+  {% include site-header.html home=true %}
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-media" role="img" aria-label="A custom visualization of an AI system-on-chip with copper and cyan signal paths"></div><div class="hero-shade" aria-hidden="true"></div><div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-content shell">
-        <div class="hero-copy reveal"><p class="eyebrow light"><span></span> Seoul National University · ECE</p><h1 id="hero-title">Intelligence,<br><em>designed from</em><br>silicon up.</h1><p class="hero-intro">We create specialized computing systems for the next generation of AI — uniting architecture, circuits, memory, and software.</p><div class="hero-actions"><a class="button button-primary page-link" href="research.html">Explore our research <i data-lucide="arrow-up-right" aria-hidden="true"></i></a><a class="text-link light page-link" href="join.html">Open positions <i data-lucide="arrow-right" aria-hidden="true"></i></a></div></div>
-        <div class="hero-index reveal delay-2"><p>Research scope</p><ol><li><span>01</span> Architecture</li><li><span>02</span> VLSI Design</li><li><span>03</span> HW–SW Co-design</li><li><span>04</span> Processing-in-Memory</li></ol></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow light"><span></span> {{ site.data.home.eyebrow }}</p>
+          <h1 id="hero-title">{{ site.data.home.hero_line1 }}<br><em>{{ site.data.home.hero_emphasis }}</em><br>{{ site.data.home.hero_line3 }}</h1>
+          <p class="hero-intro">{{ site.data.home.intro }}</p>
+          <div class="hero-actions">
+            <a class="button button-primary page-link" href="research.html">{{ site.data.home.primary_cta_label }} <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+            <a class="text-link light page-link" href="join.html">{{ site.data.home.secondary_cta_label }} <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="hero-index reveal delay-2">
+          <p>Research scope</p>
+          <ol>
+            {% for item in site.data.home.research_scope %}
+            <li><span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span> {{ item }}</li>
+            {% endfor %}
+          </ol>
+        </div>
       </div>
-      <div class="hero-foot shell"><p>Department of Electrical &amp; Computer Engineering</p><p>Seoul National University · Seoul, Korea</p><span>37.459° N / 126.952° E</span></div>
+      <div class="hero-foot shell">
+        <p>{{ site.data.site.department }}</p>
+        <p>{{ site.data.site.university }} · {{ site.data.site.location }}</p>
+        <span>{{ site.data.site.coordinates }}</span>
+      </div>
     </section>
-    <section class="home-recruit reveal"><div class="shell home-recruit-grid"><p class="section-kicker inverse"><span>01</span> Now recruiting</p><div><h2>Internships for 2027 Fall<br>&amp; 2028 Spring admissions.</h2><a class="button button-light page-link" href="join.html">View opportunities <i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div></div></section>
+    <section class="home-recruit reveal">
+      <div class="shell home-recruit-grid">
+        <p class="section-kicker inverse"><span>01</span> {{ site.data.home.recruiting_kicker }}</p>
+        <div>
+          <h2>{{ site.data.home.recruiting_line1 }}<br>{{ site.data.home.recruiting_line2 }}</h2>
+          <a class="button button-light page-link" href="join.html">{{ site.data.home.recruiting_cta_label }} <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="shell footer-grid"><div><a href="index.html"><img class="footer-logo" src="assets/images/aisoc-logo-transparent.png" alt="AI SOC Laboratory"></a><p>Computing systems for<br>next-generation intelligence.</p></div><div><p class="mono">VISIT</p><address>Room 422, Building 18<br>1 Gwanak-ro, Gwanak-gu<br>Seoul 08826, Republic of Korea</address><a class="text-link" href="https://maps.google.com/?q=Building+18+Seoul+National+University" target="_blank" rel="noopener">Open map <i data-lucide="map-pin" aria-hidden="true"></i></a></div><div><p class="mono">CONTACT</p><a href="mailto:junseok.park@snu.ac.kr">junseok.park@snu.ac.kr</a><a href="tel:+8228808476">+82 2 880 8476</a></div><div class="footer-nav"><p class="mono">NAVIGATE</p><a href="research.html">Research</a><a href="professor.html">Professor</a><a href="publications.html">Publications</a><a href="join.html">Join us</a></div></div><div class="shell footer-bottom"><p>© <span data-year></span> AI SoC Laboratory, Seoul National University.</p><a href="#top">Back to top <i data-lucide="arrow-up" aria-hidden="true"></i></a></div></footer>
+  {% include site-footer.html show_map=true back_target="#top" %}
 </body>
 </html>

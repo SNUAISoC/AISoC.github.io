@@ -1,0 +1,39 @@
+page_index: 03 / Publications
+page_index_detail: Peer-reviewed research
+hero_line1: Ideas,
+hero_emphasis: proven in silicon.
+hero_lead: Selected work in energy-efficient neural processing, sparse computation, and adaptable mobile AI systems.
+featured:
+  kicker: Featured · IEEE JSSC 2023
+  title: A Multi-Mode 8K-MAC HW-Utilization-Aware Neural Processing Unit
+  description: A unified multi-precision datapath supports INT4/8/16 and FP16 while dynamic operating modes address both low-power and low-latency requirements in a 4-nm mobile SoC.
+  metric1_value: 8K
+  metric1_label: Multiply-accumulate units
+  metric2_value: 4 nm
+  metric2_label: Flagship mobile SoC
+  url: "https://doi.org/10.1109/JSSC.2022.3205713"
+  button_label: View paper
+section_kicker_label: Selected
+section_kicker_text: Publications
+section_heading: Research record
+items:
+  - year: "2023"
+    title: A Multi-Mode 8K-MAC HW-Utilization-Aware Neural Processing Unit with a Unified Multi-Precision Datapath in 4-nm Flagship Mobile SoC
+    venue: IEEE Journal of Solid-State Circuits · Vol. 58, No. 1
+    tag: 4 nm
+    url: "https://doi.org/10.1109/JSSC.2022.3205713"
+  - year: "2022"
+    title: A Multi-Mode 8K-MAC HW-Utilization-Aware Neural Processing Unit with a Unified Multi-Precision Datapath in 4-nm Flagship Mobile SoC
+    venue: IEEE International Solid-State Circuits Conference (ISSCC)
+    tag: 8K MAC
+    url: "https://doi.org/10.1109/ISSCC42614.2022.9731639"
+  - year: "2021"
+    title: A 6K-MAC Feature-Map-Sparsity-Aware Neural Processing Unit in 5-nm Flagship Mobile SoC
+    venue: IEEE International Solid-State Circuits Conference (ISSCC)
+    tag: 5 nm
+    url: "https://doi.org/10.1109/ISSCC42613.2021.9365928"
+  - year: "2019"
+    title: An 11.5 TOPS/W 1024-MAC Butterfly Structure Dual-Core Sparsity-Aware Neural Processing Unit in 8-nm Flagship Mobile SoC
+    venue: IEEE International Solid-State Circuits Conference (ISSCC)
+    tag: 11.5 TOPS/W
+    url: "https://doi.org/10.1109/ISSCC.2019.8662476"
