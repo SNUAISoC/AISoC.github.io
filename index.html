@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=20260908"><link rel="stylesheet" href="assets/multipage.css?v=20260908">
-  <link rel="stylesheet" href="assets/hero-logo-pulse.css?v=20260930">
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script><script src="assets/script.js?v=20260908" defer></script>
 </head>
 <body class="home-page">
@@ -17,18 +16,7 @@
   {% include site-header.html home=true %}
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-media" role="img" aria-label="{{ site.data.home.hero_image_alt }}" style="background-image:url('{{ site.data.home.hero_image }}');"></div>
-
-      <!-- Animated laboratory logo over the center chip -->
-      <div class="hero-chip-logo-wrap" aria-hidden="true">
-        <img
-          class="hero-chip-logo"
-          src="{{ site.data.site.logo }}"
-          alt=""
-        >
-      </div>
-
-      <div class="hero-shade" aria-hidden="true"></div><div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-media" role="img" aria-label="{{ site.data.home.hero_image_alt }}" style="background-image:url('{{ site.data.home.hero_image }}');"></div><div class="hero-shade" aria-hidden="true"></div><div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-content shell">
         <div class="hero-copy reveal">
           <p class="eyebrow light"><span></span> {{ site.data.home.eyebrow }}</p>
