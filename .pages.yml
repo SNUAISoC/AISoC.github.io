@@ -1,14 +1,12 @@
 media:
   input: assets/images
   output: /assets/images
-  categories:
-    - image
+  categories: [image]
   rename: safe
 
 settings:
   content:
     merge: true
-
   commit:
     identity: user
     templates:
@@ -18,125 +16,523 @@ settings:
       rename: "CMS: rename {oldPath} -> {newPath}"
 
 content:
-
-  # ============================================================
-  # WEBSITE PAGES
-  # ============================================================
-
-  - name: website
-    label: Website Pages
+  - name: content
+    label: Website Content
     type: group
-
     items:
+      - name: site
+        label: Site Settings
+        type: file
+        path: _data/site.yml
+        format: yaml
+        operations:
+          create: false
+          rename: false
+          delete: false
+        fields:
+          - name: lab_name
+            label: Laboratory Name
+            type: string
+            required: true
+          - name: logo
+            label: Logo
+            type: image
+            required: true
+          - name: email
+            label: Contact Email
+            type: string
+            required: true
+          - name: phone_display
+            label: Phone Number
+            type: string
+          - name: phone_href
+            label: Phone Link
+            type: string
+            description: "Digits for the tel: link, e.g. +8228808476"
+          - name: department
+            label: Department
+            type: string
+          - name: university
+            label: University
+            type: string
+          - name: location
+            label: Location
+            type: string
+          - name: coordinates
+            label: Coordinates
+            type: string
+          - name: address
+            label: Address Lines
+            type: string
+            list: true
+          - name: map_url
+            label: Google Maps URL
+            type: string
+          - name: footer_tagline_line1
+            label: Footer Tagline - Line 1
+            type: string
+          - name: footer_tagline_line2
+            label: Footer Tagline - Line 2
+            type: string
+          - name: copyright
+            label: Copyright Text
+            type: string
 
       - name: home
         label: Home
         type: file
-        path: index.html
-        format: code
+        path: _data/home.yml
+        format: yaml
         operations:
           create: false
           rename: false
           delete: false
+        fields:
+          - name: eyebrow
+            label: Eyebrow
+            type: string
+          - name: hero_line1
+            label: Hero - Line 1
+            type: string
+          - name: hero_emphasis
+            label: Hero - Emphasized Line
+            type: string
+          - name: hero_line3
+            label: Hero - Line 3
+            type: string
+          - name: intro
+            label: Introduction
+            type: text
+          - name: primary_cta_label
+            label: Research Button Label
+            type: string
+          - name: secondary_cta_label
+            label: Open Positions Link Label
+            type: string
+          - name: research_scope
+            label: Research Scope
+            type: string
+            list:
+              min: 1
+              max: 8
+          - name: recruiting_kicker
+            label: Recruiting Label
+            type: string
+          - name: recruiting_line1
+            label: Recruiting - Line 1
+            type: string
+          - name: recruiting_line2
+            label: Recruiting - Line 2
+            type: string
+          - name: recruiting_cta_label
+            label: Recruiting Button Label
+            type: string
 
       - name: research
         label: Research
         type: file
-        path: research.html
-        format: code
+        path: _data/research.yml
+        format: yaml
         operations:
           create: false
           rename: false
           delete: false
+        fields:
+          - name: page_index
+            label: Page Index
+            type: string
+          - name: page_index_detail
+            label: Page Index Description
+            type: string
+          - name: hero_line1
+            label: Hero - Line 1
+            type: string
+          - name: hero_emphasis
+            label: Hero - Emphasized Line
+            type: string
+          - name: hero_lead
+            label: Hero Description
+            type: text
+          - name: intro_kicker_label
+            label: Intro Label
+            type: string
+          - name: intro_kicker_text
+            label: Intro Label Description
+            type: string
+          - name: intro_heading_before
+            label: Intro Heading - Before Emphasis
+            type: string
+          - name: intro_heading_emphasis
+            label: Intro Heading - Emphasis
+            type: string
+          - name: intro_heading_after
+            label: Intro Heading - After Emphasis
+            type: string
+          - name: intro_paragraphs
+            label: Intro Paragraphs
+            type: text
+            list:
+              min: 1
+          - name: areas
+            label: Research Areas
+            type: object
+            list:
+              min: 1
+              collapsible:
+                collapsed: true
+                summary: "{index}. {title_line1} {title_line2}"
+            fields:
+              - name: icon
+                label: Lucide Icon Name
+                type: string
+                description: "Examples: brain-circuit, cpu, database-zap, blocks"
+              - name: title_line1
+                label: Title - Line 1
+                type: string
+                required: true
+              - name: title_line2
+                label: Title - Line 2
+                type: string
+              - name: description
+                label: Description
+                type: text
+              - name: topics
+                label: Topics
+                type: string
+                list:
+                  min: 1
+          - name: question_kicker_label
+            label: Closing Label
+            type: string
+          - name: question_kicker_text
+            label: Closing Label Description
+            type: string
+          - name: question
+            label: Closing Question
+            type: text
 
       - name: professor
         label: Professor
         type: file
-        path: professor.html
-        format: code
+        path: _data/professor.yml
+        format: yaml
         operations:
           create: false
           rename: false
           delete: false
+        fields:
+          - name: page_index
+            label: Page Index
+            type: string
+          - name: page_index_detail
+            label: Page Index Description
+            type: string
+          - name: name_en
+            label: English Name
+            type: string
+            required: true
+          - name: name_ko
+            label: Korean Name
+            type: string
+          - name: position
+            label: Position
+            type: text
+          - name: image
+            label: Professor Photo
+            type: image
+            required: true
+          - name: portrait_caption
+            label: Photo Caption
+            type: string
+          - name: portrait_subcaption
+            label: Photo Subcaption
+            type: string
+          - name: story_primary_before
+            label: Main Introduction - Before Emphasis
+            type: text
+          - name: story_primary_emphasis
+            label: Main Introduction - Emphasized Text
+            type: string
+          - name: story_primary_after
+            label: Main Introduction - After Emphasis
+            type: text
+          - name: story_secondary
+            label: Secondary Introduction
+            type: text
+          - name: interests
+            label: Research Interests
+            type: string
+            list:
+              min: 1
+          - name: official_profile_url
+            label: Official SNU Profile URL
+            type: string
+          - name: career_kicker_label
+            label: Career Section Label
+            type: string
+          - name: career_kicker_text
+            label: Career Section Description
+            type: string
+          - name: career
+            label: Career & Education
+            type: object
+            list:
+              min: 1
+              collapsible:
+                collapsed: true
+                summary: "{period} — {role}"
+            fields:
+              - name: period
+                label: Period
+                type: string
+                required: true
+              - name: role
+                label: Position / Degree
+                type: string
+                required: true
+              - name: organization
+                label: Organization
+                type: string
+                required: true
 
       - name: publications
         label: Publications
         type: file
-        path: publications.html
-        format: code
+        path: _data/publications.yml
+        format: yaml
         operations:
           create: false
           rename: false
           delete: false
+        fields:
+          - name: page_index
+            label: Page Index
+            type: string
+          - name: page_index_detail
+            label: Page Index Description
+            type: string
+          - name: hero_line1
+            label: Hero - Line 1
+            type: string
+          - name: hero_emphasis
+            label: Hero - Emphasized Line
+            type: string
+          - name: hero_lead
+            label: Hero Description
+            type: text
+          - name: featured
+            label: Featured Publication
+            type: object
+            fields:
+              - name: kicker
+                label: Label
+                type: string
+              - name: title
+                label: Title
+                type: text
+              - name: description
+                label: Description
+                type: text
+              - name: metric1_value
+                label: Metric 1 Value
+                type: string
+              - name: metric1_label
+                label: Metric 1 Label
+                type: string
+              - name: metric2_value
+                label: Metric 2 Value
+                type: string
+              - name: metric2_label
+                label: Metric 2 Label
+                type: string
+              - name: url
+                label: Paper URL
+                type: string
+              - name: button_label
+                label: Button Label
+                type: string
+          - name: section_kicker_label
+            label: Publication List Label
+            type: string
+          - name: section_kicker_text
+            label: Publication List Label Description
+            type: string
+          - name: section_heading
+            label: Publication List Heading
+            type: string
+          - name: items
+            label: Publication List
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{year} — {title}"
+            fields:
+              - name: year
+                label: Year
+                type: string
+                required: true
+              - name: title
+                label: Paper Title
+                type: text
+                required: true
+              - name: venue
+                label: Venue
+                type: string
+              - name: tag
+                label: Tag
+                type: string
+              - name: url
+                label: Paper URL / DOI
+                type: string
 
       - name: join
         label: Join Us
         type: file
-        path: join.html
-        format: code
+        path: _data/join.yml
+        format: yaml
         operations:
           create: false
           rename: false
           delete: false
-
-
-  # ============================================================
-  # WEBSITE DESIGN / DEVELOPER FILES
-  # ============================================================
+        fields:
+          - name: page_index
+            label: Page Index
+            type: string
+          - name: page_index_detail
+            label: Page Index Description
+            type: string
+          - name: recruiting_status
+            label: Recruiting Status
+            type: string
+          - name: hero_line1
+            label: Hero - Line 1
+            type: string
+          - name: hero_emphasis
+            label: Hero - Emphasized Line
+            type: string
+          - name: hero_lead
+            label: Hero Description
+            type: text
+          - name: who_kicker_label
+            label: Who Section Label
+            type: string
+          - name: who_kicker_text
+            label: Who Section Label Description
+            type: string
+          - name: who_heading
+            label: Who Section Heading
+            type: text
+          - name: who_description
+            label: Who Section Description
+            type: text
+          - name: fit_items
+            label: Research Fit Items
+            type: string
+            list:
+              min: 1
+          - name: apply_kicker_label
+            label: Apply Section Label
+            type: string
+          - name: apply_kicker_text
+            label: Apply Section Label Description
+            type: string
+          - name: steps
+            label: Application Steps
+            type: object
+            list:
+              min: 1
+              collapsible:
+                collapsed: true
+                summary: "{index}. {title}"
+            fields:
+              - name: title
+                label: Step Title
+                type: string
+                required: true
+              - name: description
+                label: Step Description
+                type: text
+          - name: cta_text
+            label: CTA Text
+            type: string
+          - name: cta_name
+            label: CTA Contact Name
+            type: string
+          - name: email_subject
+            label: Email Subject
+            type: string
 
   - name: developer
-    label: Developer Files
+    label: Advanced / Developer
     type: group
-
     items:
+      - name: home_template
+        label: Home Template
+        type: file
+        path: index.html
+        format: code
+        operations: { create: false, rename: false, delete: false }
+
+      - name: research_template
+        label: Research Template
+        type: file
+        path: research.html
+        format: code
+        operations: { create: false, rename: false, delete: false }
+
+      - name: professor_template
+        label: Professor Template
+        type: file
+        path: professor.html
+        format: code
+        operations: { create: false, rename: false, delete: false }
+
+      - name: publications_template
+        label: Publications Template
+        type: file
+        path: publications.html
+        format: code
+        operations: { create: false, rename: false, delete: false }
+
+      - name: join_template
+        label: Join Template
+        type: file
+        path: join.html
+        format: code
+        operations: { create: false, rename: false, delete: false }
+
+      - name: header_template
+        label: Shared Header
+        type: file
+        path: _includes/site-header.html
+        format: code
+        operations: { create: false, rename: false, delete: false }
+
+      - name: footer_template
+        label: Shared Footer
+        type: file
+        path: _includes/site-footer.html
+        format: code
+        operations: { create: false, rename: false, delete: false }
 
       - name: styles
         label: Main CSS
         type: file
         path: assets/styles.css
         format: code
-        operations:
-          create: false
-          rename: false
-          delete: false
+        operations: { create: false, rename: false, delete: false }
 
       - name: multipage_styles
         label: Page CSS
         type: file
         path: assets/multipage.css
         format: code
-        operations:
-          create: false
-          rename: false
-          delete: false
+        operations: { create: false, rename: false, delete: false }
 
       - name: javascript
         label: JavaScript
         type: file
         path: assets/script.js
         format: code
-        operations:
-          create: false
-          rename: false
-          delete: false
-
-
-  # ============================================================
-  # DOCUMENTATION
-  # ============================================================
-
-  - name: documentation
-    label: Documentation
-    type: group
-
-    items:
-
-      - name: readme
-        label: README
-        type: file
-        path: README.md
-        format: code
-        operations:
-          create: false
-          rename: false
-          delete: false
+        operations: { create: false, rename: false, delete: false }
