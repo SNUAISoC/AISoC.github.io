@@ -1,6 +1,6 @@
 media:
   input: assets/images
-  output: /assets/images
+  output: assets/images
   categories: [image]
   rename: safe
 
