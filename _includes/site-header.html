@@ -1,3 +1,76 @@
+{% case site.data.design.typography.body_font %}
+  {% when 'newsreader' %}{% assign cms_body_font = "'Newsreader', serif" %}
+  {% when 'dm-mono' %}{% assign cms_body_font = "'DM Mono', monospace" %}
+  {% when 'system-sans' %}{% assign cms_body_font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" %}
+  {% when 'system-serif' %}{% assign cms_body_font = "Georgia, 'Times New Roman', serif" %}
+  {% else %}{% assign cms_body_font = "'Manrope', sans-serif" %}
+{% endcase %}
+{% case site.data.design.typography.heading_font %}
+  {% when 'newsreader' %}{% assign cms_heading_font = "'Newsreader', serif" %}
+  {% when 'dm-mono' %}{% assign cms_heading_font = "'DM Mono', monospace" %}
+  {% when 'system-sans' %}{% assign cms_heading_font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" %}
+  {% when 'system-serif' %}{% assign cms_heading_font = "Georgia, 'Times New Roman', serif" %}
+  {% else %}{% assign cms_heading_font = "'Manrope', sans-serif" %}
+{% endcase %}
+{% case site.data.design.typography.accent_font %}
+  {% when 'manrope' %}{% assign cms_accent_font = "'Manrope', sans-serif" %}
+  {% when 'dm-mono' %}{% assign cms_accent_font = "'DM Mono', monospace" %}
+  {% when 'system-sans' %}{% assign cms_accent_font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" %}
+  {% when 'system-serif' %}{% assign cms_accent_font = "Georgia, 'Times New Roman', serif" %}
+  {% else %}{% assign cms_accent_font = "'Newsreader', serif" %}
+{% endcase %}
+<style id="pages-cms-design-settings">
+  :root {
+    --ink: {{ site.data.design.colors.ink | default: '#07111f' }};
+    --paper: {{ site.data.design.colors.paper | default: '#f3f0e8' }};
+    --copper: {{ site.data.design.colors.accent | default: '#d87945' }};
+    --cyan: {{ site.data.design.colors.highlight | default: '#5bd6e5' }};
+    --cms-body-font: {{ cms_body_font }};
+    --cms-heading-font: {{ cms_heading_font }};
+    --cms-accent-font: {{ cms_accent_font }};
+    --sans: {{ cms_body_font }};
+    --serif: {{ cms_accent_font }};
+    --cms-body-size: {{ site.data.design.typography.body_size | default: 16 }}px;
+    --cms-line-height: {{ site.data.design.typography.line_height | default: 1.6 }};
+    --cms-hero-title-size: {{ site.data.design.typography.hero_title_size | default: 112 }}px;
+    --cms-page-title-size: {{ site.data.design.typography.page_title_size | default: 112 }}px;
+    --cms-nav-size: {{ site.data.design.typography.nav_size | default: 13 }}px;
+    --cms-content-width: {{ site.data.design.layout.content_width | default: 1180 }}px;
+    --cms-side-padding: {{ site.data.design.layout.side_padding | default: 24 }}px;
+    --cms-section-spacing: {{ site.data.design.layout.section_spacing | default: 136 }}px;
+    --cms-header-height: {{ site.data.design.layout.header_height | default: 82 }}px;
+    --cms-hero-text-width: {{ site.data.design.hero.text_width | default: 760 }}px;
+    --cms-hero-offset: {{ site.data.design.hero.vertical_offset | default: 0 }}px;
+    --cms-hero-gap: {{ site.data.design.hero.column_gap | default: 80 }}px;
+    --cms-hero-align: {{ site.data.design.hero.text_align | default: 'left' }};
+  }
+  body { font-family: var(--cms-body-font); font-size: var(--cms-body-size); line-height: var(--cms-line-height); }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--cms-heading-font); }
+  .shell { width: min(var(--cms-content-width), calc(100% - (var(--cms-side-padding) * 2))); }
+  .section-pad { padding-top: var(--cms-section-spacing); padding-bottom: var(--cms-section-spacing); }
+  .site-header, .site-header.is-scrolled, .inner-page .site-header { min-height: var(--cms-header-height); }
+  .inner-page .page-main { padding-top: var(--cms-header-height); }
+  .site-header { padding-left: max(var(--cms-side-padding), calc((100vw - var(--cms-content-width)) / 2)); padding-right: max(var(--cms-side-padding), calc((100vw - var(--cms-content-width)) / 2)); }
+  .desktop-nav, .header-cta { font-size: var(--cms-nav-size); }
+  .hero-content { gap: var(--cms-hero-gap); }
+  .hero-copy { max-width: var(--cms-hero-text-width); text-align: var(--cms-hero-align); margin-top: var(--cms-hero-offset); }
+  .hero h1 { font-family: var(--cms-heading-font); max-width: var(--cms-hero-text-width); font-size: clamp(48px, 7.25vw, var(--cms-hero-title-size)); }
+  .page-hero h1 { font-family: var(--cms-heading-font); font-size: clamp(48px, 8vw, var(--cms-page-title-size)); }
+  {% if site.data.design.hero.text_align == 'center' %}
+  .hero-copy .eyebrow, .hero-copy .hero-actions { justify-content: center; }
+  .hero-copy .hero-intro { margin-left: auto; margin-right: auto; }
+  {% elsif site.data.design.hero.text_align == 'right' %}
+  .hero-copy { margin-left: auto; }
+  .hero-copy .eyebrow, .hero-copy .hero-actions { justify-content: flex-end; }
+  .hero-copy .hero-intro { margin-left: auto; }
+  {% endif %}
+  @media (max-width: 720px) {
+    .shell { width: min(var(--cms-content-width), calc(100% - 32px)); }
+    .section-pad { padding-top: min(var(--cms-section-spacing), 88px); padding-bottom: min(var(--cms-section-spacing), 88px); }
+    .hero h1 { font-size: min(58px, 14vw); }
+    .page-hero h1 { font-size: min(58px, 14vw); }
+  }
+</style>
 <header class="site-header{% unless include.home %} is-scrolled{% endunless %}" data-header>
   <a class="brand{% unless include.home %} page-link{% endunless %}" href="index.html" aria-label="AI SoC Lab home">
     <img class="brand-logo" src="{{ site.data.site.logo }}" alt="AI SOC — Artificial Intelligence System on Chip Laboratory">
@@ -5,6 +78,7 @@
   <nav class="desktop-nav" aria-label="Primary navigation">
     <a{% unless include.active == "research" %} class="page-link"{% endunless %} href="research.html"{% if include.active == "research" %} aria-current="page"{% endif %}>Research</a>
     <a{% unless include.active == "professor" %} class="page-link"{% endunless %} href="professor.html"{% if include.active == "professor" %} aria-current="page"{% endif %}>Professor</a>
+    <a{% unless include.active == "team" %} class="page-link"{% endunless %} href="team.html"{% if include.active == "team" %} aria-current="page"{% endif %}>Team</a>
     <a{% unless include.active == "publications" %} class="page-link"{% endunless %} href="publications.html"{% if include.active == "publications" %} aria-current="page"{% endif %}>Publications</a>
     <a{% unless include.active == "join" %} class="page-link"{% endunless %} href="join.html"{% if include.active == "join" %} aria-current="page"{% endif %}>Join us</a>
   </nav>
@@ -19,6 +93,7 @@
   <div class="mobile-menu" id="mobile-menu" hidden>
     <a{% unless include.active == "research" %} class="page-link"{% endunless %} href="research.html">Research</a>
     <a{% unless include.active == "professor" %} class="page-link"{% endunless %} href="professor.html">Professor</a>
+    <a{% unless include.active == "team" %} class="page-link"{% endunless %} href="team.html">Team</a>
     <a{% unless include.active == "publications" %} class="page-link"{% endunless %} href="publications.html">Publications</a>
     <a{% unless include.active == "join" %} class="page-link"{% endunless %} href="join.html">Join us</a>
     <a href="mailto:{{ site.data.site.email }}">{{ site.data.site.email }}</a>
