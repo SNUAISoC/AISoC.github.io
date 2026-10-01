@@ -1,355 +1,3754 @@
 media:
   input: assets/images
   output: assets/images
-  categories: [image]
+  categories:
+  - image
   rename: safe
-
 settings:
   content:
     merge: true
   commit:
     identity: user
     templates:
-      create: "CMS: create {path}"
-      update: "CMS: update {path}"
-      delete: "CMS: delete {path}"
-      rename: "CMS: rename {oldPath} -> {newPath}"
-
+      create: 'CMS: create {path}'
+      update: 'CMS: update {path}'
+      delete: 'CMS: delete {path}'
+      rename: 'CMS: rename {oldPath} -> {newPath}'
 content:
-  - name: content
-    label: Website Content
-    type: group
-    items:
-      - name: site
-        label: Site Settings
-        type: file
-        path: _data/site.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+- name: content
+  label: Website Content
+  type: group
+  items:
+  - name: site
+    label: Site Settings
+    type: file
+    path: _data/site.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: lab_name
+      label: Laboratory Name
+      type: string
+      required: true
+    - name: logo
+      label: Logo
+      type: image
+      required: true
+    - name: email
+      label: Contact Email
+      type: string
+      required: true
+    - name: phone_display
+      label: Phone Number
+      type: string
+    - name: phone_href
+      label: Phone Link
+      type: string
+    - name: department
+      label: Department
+      type: string
+    - name: university
+      label: University
+      type: string
+    - name: location
+      label: Location
+      type: string
+    - name: coordinates
+      label: Coordinates
+      type: string
+    - name: address
+      label: Address Lines
+      type: string
+      list: true
+    - name: map_url
+      label: Google Maps URL
+      type: string
+    - name: footer_tagline_line1
+      label: Footer Tagline - Line 1
+      type: string
+    - name: footer_tagline_line2
+      label: Footer Tagline - Line 2
+      type: string
+    - name: copyright
+      label: Copyright Text
+      type: string
+  - name: design
+    label: Design Settings
+    type: file
+    path: _data/design.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: global
+      label: Global Defaults
+      type: object
+      fields:
+      - name: body_font
+        label: Body Font
+        type: select
+        options:
+          values:
+          - name: manrope
+            label: Manrope
+          - name: newsreader
+            label: Newsreader
+          - name: dm-mono
+            label: DM Mono
+          - name: system-sans
+            label: System Sans
+          - name: system-serif
+            label: System Serif
+      - name: body_size
+        label: Body Font Size (px)
+        type: number
+        options:
+          min: 10
+          max: 28
+      - name: body_line_height
+        label: Body Line Height
+        type: number
+        options:
+          min: 1
+          max: 2.4
+      - name: content_width
+        label: Maximum Content Width (px)
+        type: number
+        options:
+          min: 760
+          max: 1800
+      - name: side_padding
+        label: Minimum Side Padding (px)
+        type: number
+        options:
+          min: 8
+          max: 120
+      - name: ink
+        label: Main Dark Color (CSS color)
+        type: string
+      - name: paper
+        label: Main Background Color (CSS color)
+        type: string
+      - name: paper_alt
+        label: Alternate Background Color (CSS color)
+        type: string
+      - name: white
+        label: Light Text / Surface Color (CSS color)
+        type: string
+      - name: accent
+        label: Accent / Copper Color (CSS color)
+        type: string
+      - name: highlight
+        label: Highlight / Cyan Color (CSS color)
+        type: string
+      - name: muted
+        label: Muted Text Color (CSS color)
+        type: string
+    - name: header
+      label: Header
+      type: object
+      fields:
+      - name: font
+        label: Navigation Font
+        type: select
+        options:
+          values:
+          - name: manrope
+            label: Manrope
+          - name: newsreader
+            label: Newsreader
+          - name: dm-mono
+            label: DM Mono
+          - name: system-sans
+            label: System Sans
+          - name: system-serif
+            label: System Serif
+      - name: font_size
+        label: Navigation Font Size (px)
+        type: number
+        options:
+          min: 9
+          max: 24
+      - name: font_weight
+        label: Navigation Font Weight
+        type: select
+        options:
+          values:
+          - name: '400'
+            label: 400 Regular
+          - name: '500'
+            label: 500 Medium
+          - name: '600'
+            label: 600 SemiBold
+          - name: '700'
+            label: 700 Bold
+      - name: light_text
+        label: Text Color on Home Hero (CSS color)
+        type: string
+      - name: scrolled_text
+        label: Text Color on Inner/Scrolled Header
+        type: string
+      - name: scrolled_background
+        label: Inner/Scrolled Header Background (CSS color)
+        type: string
+      - name: height
+        label: Home Header Height (px)
+        type: number
+        options:
+          min: 50
+          max: 140
+      - name: scrolled_height
+        label: Inner/Scrolled Header Height (px)
+        type: number
+        options:
+          min: 50
+          max: 120
+      - name: nav_gap
+        label: Navigation Item Gap (px)
+        type: number
+        options:
+          min: 8
+          max: 80
+      - name: logo_width
+        label: Logo Width (px)
+        type: number
+        options:
+          min: 80
+          max: 320
+      - name: border_color
+        label: Home Header Border Color
+        type: string
+      - name: scrolled_border
+        label: Inner Header Border Color
+        type: string
+      - name: offset_y
+        label: Header Vertical Offset (px)
+        type: number
+        options:
+          min: -80
+          max: 80
+    - name: footer
+      label: Footer
+      type: object
+      fields:
+      - name: font
+        label: Footer Body Font
+        type: select
+        options:
+          values:
+          - name: manrope
+            label: Manrope
+          - name: newsreader
+            label: Newsreader
+          - name: dm-mono
+            label: DM Mono
+          - name: system-sans
+            label: System Sans
+          - name: system-serif
+            label: System Serif
+      - name: body_size
+        label: Footer Body Size (px)
+        type: number
+        options:
+          min: 9
+          max: 24
+      - name: label_font
+        label: Footer Label Font
+        type: select
+        options:
+          values:
+          - name: manrope
+            label: Manrope
+          - name: newsreader
+            label: Newsreader
+          - name: dm-mono
+            label: DM Mono
+          - name: system-sans
+            label: System Sans
+          - name: system-serif
+            label: System Serif
+      - name: label_size
+        label: Footer Label Size (px)
+        type: number
+        options:
+          min: 8
+          max: 18
+      - name: text_color
+        label: Footer Text Color
+        type: string
+      - name: heading_color
+        label: Footer Heading / Link Color
+        type: string
+      - name: background
+        label: Footer Background
+        type: string
+      - name: padding_top
+        label: Footer Top Padding (px)
+        type: number
+        options:
+          min: 20
+          max: 220
+      - name: padding_bottom
+        label: Footer Bottom Padding (px)
+        type: number
+        options:
+          min: 10
+          max: 120
+      - name: grid_gap
+        label: Footer Column Gap (px)
+        type: number
+        options:
+          min: 0
+          max: 140
+      - name: logo_width
+        label: Footer Logo Width (px)
+        type: number
+        options:
+          min: 80
+          max: 360
+      - name: offset_y
+        label: Footer Vertical Offset (px)
+        type: number
+        options:
+          min: -120
+          max: 120
+    - name: home
+      label: Home Page
+      type: object
+      fields:
+      - name: hero
+        label: Hero
+        type: object
         fields:
-          - { name: lab_name, label: Laboratory Name, type: string, required: true }
-          - { name: logo, label: Logo, type: image, required: true }
-          - { name: email, label: Contact Email, type: string, required: true }
-          - { name: phone_display, label: Phone Number, type: string }
-          - { name: phone_href, label: Phone Link, type: string }
-          - { name: department, label: Department, type: string }
-          - { name: university, label: University, type: string }
-          - { name: location, label: Location, type: string }
-          - { name: coordinates, label: Coordinates, type: string }
-          - name: address
-            label: Address Lines
-            type: string
-            list: true
-          - { name: map_url, label: Google Maps URL, type: string }
-          - { name: footer_tagline_line1, label: Footer Tagline - Line 1, type: string }
-          - { name: footer_tagline_line2, label: Footer Tagline - Line 2, type: string }
-          - { name: copyright, label: Copyright Text, type: string }
-
-      - name: design
-        label: Design Settings
-        type: file
-        path: _data/design.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+        - name: title_font
+          label: Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Title Max Size (px)
+          type: number
+          options:
+            min: 36
+            max: 180
+        - name: title_weight
+          label: Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Title Line Height
+          type: number
+          options:
+            min: 0.7
+            max: 1.8
+        - name: title_letter_spacing
+          label: Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.15
+            max: 0.15
+        - name: title_color
+          label: Title Color (CSS color)
+          type: string
+        - name: emphasis_font
+          label: Emphasis Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: emphasis_color
+          label: Emphasis Color (CSS color)
+          type: string
+        - name: lead_font
+          label: Description Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: lead_size
+          label: Description Size (px)
+          type: number
+          options:
+            min: 10
+            max: 40
+        - name: lead_line_height
+          label: Description Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: lead_color
+          label: Description Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: min_height
+          label: Minimum Height (px)
+          type: number
+          options:
+            min: 300
+            max: 1200
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: content_gap
+          label: Left/Right Column Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 200
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: text_width
+          label: Hero Text Max Width (px)
+          type: number
+          options:
+            min: 320
+            max: 1200
+        - name: overlay_color
+          label: Background Overlay Color
+          type: string
+        - name: overlay_opacity
+          label: Background Overlay Opacity
+          type: number
+          options:
+            min: 0
+            max: 1
+        - name: background_position
+          label: Background Position (e.g. center, 50% 30%)
+          type: string
+      - name: scope
+        label: Hero Research Scope
+        type: object
         fields:
-          - name: typography
-            label: Typography
-            type: object
-            fields:
-              - name: body_font
-                label: Body Font
-                type: select
-                options:
-                  values:
-                    - { name: manrope, label: Manrope }
-                    - { name: newsreader, label: Newsreader }
-                    - { name: dm-mono, label: DM Mono }
-                    - { name: system-sans, label: System Sans }
-                    - { name: system-serif, label: System Serif }
-              - name: heading_font
-                label: Heading Font
-                type: select
-                options:
-                  values:
-                    - { name: manrope, label: Manrope }
-                    - { name: newsreader, label: Newsreader }
-                    - { name: dm-mono, label: DM Mono }
-                    - { name: system-sans, label: System Sans }
-                    - { name: system-serif, label: System Serif }
-              - name: accent_font
-                label: Accent / Serif Font
-                type: select
-                options:
-                  values:
-                    - { name: newsreader, label: Newsreader }
-                    - { name: manrope, label: Manrope }
-                    - { name: dm-mono, label: DM Mono }
-                    - { name: system-sans, label: System Sans }
-                    - { name: system-serif, label: System Serif }
-              - { name: body_size, label: Body Font Size (px), type: number, options: { min: 12, max: 24 } }
-              - { name: line_height, label: Body Line Height, type: number, options: { min: 1, max: 2.2 } }
-              - { name: hero_title_size, label: Home Hero Max Title Size (px), type: number, options: { min: 64, max: 180 } }
-              - { name: page_title_size, label: Inner Page Max Title Size (px), type: number, options: { min: 56, max: 160 } }
-              - { name: nav_size, label: Navigation Font Size (px), type: number, options: { min: 10, max: 20 } }
-          - name: layout
-            label: Layout & Spacing
-            type: object
-            fields:
-              - { name: content_width, label: Maximum Content Width (px), type: number, options: { min: 900, max: 1600 } }
-              - { name: side_padding, label: Minimum Side Padding (px), type: number, options: { min: 12, max: 96 } }
-              - { name: section_spacing, label: Section Top / Bottom Spacing (px), type: number, options: { min: 40, max: 240 } }
-              - { name: header_height, label: Header Height (px), type: number, options: { min: 56, max: 120 } }
-          - name: hero
-            label: Home Hero Position
-            type: object
-            fields:
-              - name: text_align
-                label: Text Alignment
-                type: select
-                options:
-                  values:
-                    - { name: left, label: Left }
-                    - { name: center, label: Center }
-                    - { name: right, label: Right }
-              - { name: text_width, label: Hero Text Maximum Width (px), type: number, options: { min: 420, max: 1100 } }
-              - { name: vertical_offset, label: Hero Text Vertical Offset (px), type: number, options: { min: -180, max: 180 } }
-              - { name: column_gap, label: Hero Column Gap (px), type: number, options: { min: 20, max: 160 } }
-          - name: colors
-            label: Colors
-            type: object
-            fields:
-              - { name: ink, label: Main Dark Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
-              - { name: paper, label: Main Background Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
-              - { name: accent, label: Accent / Copper Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
-              - { name: highlight, label: Highlight / Cyan Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
-
-      - name: home
-        label: Home
-        type: file
-        path: _data/home.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+        - name: title_font
+          label: Scope Label Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Scope Label Size (px)
+          type: number
+          options:
+            min: 8
+            max: 22
+        - name: title_color
+          label: Scope Label Color
+          type: string
+        - name: item_font
+          label: Scope Item Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: item_size
+          label: Scope Item Size (px)
+          type: number
+          options:
+            min: 8
+            max: 28
+        - name: item_color
+          label: Scope Item Color
+          type: string
+        - name: accent_color
+          label: Number Accent Color
+          type: string
+        - name: border_color
+          label: Border Color
+          type: string
+        - name: width
+          label: Scope Panel Width (px)
+          type: number
+          options:
+            min: 160
+            max: 520
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 100
+        - name: padding_left
+          label: Left Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 100
+        - name: item_gap
+          label: Item Vertical Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 40
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 320
+      - name: recruit
+        label: Recruiting Section
+        type: object
         fields:
-          - { name: eyebrow, label: Eyebrow, type: string }
-          - { name: hero_image, label: Hero Background Image, type: image, required: true }
-          - { name: hero_image_alt, label: Hero Image Alt Text, type: string }
-          - { name: hero_line1, label: Hero - Line 1, type: string }
-          - { name: hero_emphasis, label: Hero - Emphasized Line, type: string }
-          - { name: hero_line3, label: Hero - Line 3, type: string }
-          - { name: intro, label: Introduction, type: text }
-          - { name: primary_cta_label, label: Research Button Label, type: string }
-          - { name: secondary_cta_label, label: Open Positions Link Label, type: string }
-          - name: research_scope
-            label: Research Scope
-            type: string
-            list: { min: 1, max: 8 }
-          - { name: recruiting_kicker, label: Recruiting Label, type: string }
-          - { name: recruiting_line1, label: Recruiting - Line 1, type: string }
-          - { name: recruiting_line2, label: Recruiting - Line 2, type: string }
-          - { name: recruiting_cta_label, label: Recruiting Button Label, type: string }
-
-      - name: research
-        label: Research
-        type: file
-        path: _data/research.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+        - name: title_font
+          label: Recruiting Heading Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Recruiting Heading Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Recruiting Heading Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Recruiting Heading Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Recruiting Heading Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Recruiting Heading Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+    - name: research
+      label: Research Page
+      type: object
+      fields:
+      - name: hero
+        label: Hero
+        type: object
         fields:
-          - { name: page_index, label: Page Index, type: string }
-          - { name: page_index_detail, label: Page Index Description, type: string }
-          - { name: hero_line1, label: Hero - Line 1, type: string }
-          - { name: hero_emphasis, label: Hero - Emphasized Line, type: string }
-          - { name: hero_lead, label: Hero Description, type: text }
-          - { name: intro_kicker_label, label: Intro Label, type: string }
-          - { name: intro_kicker_text, label: Intro Label Description, type: string }
-          - { name: intro_heading_before, label: Intro Heading - Before Emphasis, type: string }
-          - { name: intro_heading_emphasis, label: Intro Heading - Emphasis, type: string }
-          - { name: intro_heading_after, label: Intro Heading - After Emphasis, type: string }
-          - name: intro_paragraphs
-            label: Intro Paragraphs
-            type: text
-            list: { min: 1 }
-          - name: areas
-            label: Research Areas
-            type: object
-            list:
-              min: 1
-              collapsible: { collapsed: true, summary: "{index}. {title_line1} {title_line2}" }
-            fields:
-              - { name: icon, label: Lucide Icon Name, type: string }
-              - { name: title_line1, label: Title - Line 1, type: string, required: true }
-              - { name: title_line2, label: Title - Line 2, type: string }
-              - { name: description, label: Description, type: text }
-              - name: topics
-                label: Topics
-                type: string
-                list: { min: 1 }
-          - { name: question_kicker_label, label: Closing Label, type: string }
-          - { name: question_kicker_text, label: Closing Label Description, type: string }
-          - { name: question, label: Closing Question, type: text }
-
-      - name: professor
-        label: Professor
-        type: file
-        path: _data/professor.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+        - name: title_font
+          label: Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Title Max Size (px)
+          type: number
+          options:
+            min: 36
+            max: 180
+        - name: title_weight
+          label: Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Title Line Height
+          type: number
+          options:
+            min: 0.7
+            max: 1.8
+        - name: title_letter_spacing
+          label: Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.15
+            max: 0.15
+        - name: title_color
+          label: Title Color (CSS color)
+          type: string
+        - name: emphasis_font
+          label: Emphasis Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: emphasis_color
+          label: Emphasis Color (CSS color)
+          type: string
+        - name: lead_font
+          label: Description Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: lead_size
+          label: Description Size (px)
+          type: number
+          options:
+            min: 10
+            max: 40
+        - name: lead_line_height
+          label: Description Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: lead_color
+          label: Description Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: min_height
+          label: Minimum Height (px)
+          type: number
+          options:
+            min: 300
+            max: 1200
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: content_gap
+          label: Left/Right Column Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 200
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+      - name: intro
+        label: Introduction
+        type: object
         fields:
-          - { name: page_index, label: Page Index, type: string }
-          - { name: page_index_detail, label: Page Index Description, type: string }
-          - { name: name_en, label: English Name, type: string, required: true }
-          - { name: name_ko, label: Korean Name, type: string }
-          - { name: position, label: Position, type: text }
-          - { name: image, label: Professor Photo, type: image, required: true }
-          - { name: portrait_caption, label: Photo Caption, type: string }
-          - { name: portrait_subcaption, label: Photo Subcaption, type: string }
-          - { name: story_primary_before, label: Main Introduction - Before Emphasis, type: text }
-          - { name: story_primary_emphasis, label: Main Introduction - Emphasized Text, type: string }
-          - { name: story_primary_after, label: Main Introduction - After Emphasis, type: text }
-          - { name: story_secondary, label: Secondary Introduction, type: text }
-          - name: interests
-            label: Research Interests
-            type: string
-            list: { min: 1 }
-          - { name: official_profile_url, label: Official SNU Profile URL, type: string }
-          - { name: career_kicker_label, label: Career Section Label, type: string }
-          - { name: career_kicker_text, label: Career Section Description, type: string }
-          - name: career
-            label: Career & Education
-            type: object
-            list:
-              min: 1
-              collapsible: { collapsed: true, summary: "{period} — {role}" }
-            fields:
-              - { name: period, label: Period, type: string, required: true }
-              - { name: role, label: Position / Degree, type: string, required: true }
-              - { name: organization, label: Organization, type: string, required: true }
-
-      - name: team
-        label: Team
-        type: file
-        path: _data/team.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+        - name: title_font
+          label: Introduction Heading Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Introduction Heading Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Introduction Heading Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Introduction Heading Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Introduction Heading Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Introduction Heading Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+      - name: areas
+        label: Research Areas
+        type: object
         fields:
-          - { name: page_index, label: Page Index, type: string }
-          - { name: page_index_detail, label: Page Index Description, type: string }
-          - { name: hero_line1, label: Hero - Line 1, type: string }
-          - { name: hero_emphasis, label: Hero - Emphasized Line, type: string }
-          - { name: hero_lead, label: Hero Description, type: text }
-          - { name: section_kicker_label, label: Team Section Label, type: string }
-          - { name: section_kicker_text, label: Team Section Description, type: string }
-          - name: students
-            label: Students
-            type: object
-            list:
-              collapsible: { collapsed: true, summary: "{name_en} — {role}" }
-            fields:
-              - { name: name_en, label: English Name, type: string, required: true }
-              - { name: name_ko, label: Korean Name, type: string }
-              - { name: role, label: Degree / Role, type: string, required: true }
-              - { name: image, label: Profile Photo, type: image }
-              - { name: email, label: Email, type: string }
-              - { name: bio, label: Short Bio, type: text }
-              - name: research_interests
-                label: Research Interests
-                type: string
-                list: true
-              - { name: website, label: Personal Website URL, type: string }
-              - { name: github, label: GitHub URL, type: string }
-              - { name: linkedin, label: LinkedIn URL, type: string }
-
-      - name: publications
-        label: Publications
-        type: file
-        path: _data/publications.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+        - name: title_font
+          label: Research Area Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Research Area Title Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Research Area Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Research Area Title Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Research Area Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Research Area Title Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: icon_background
+          label: Icon Background
+          type: string
+        - name: icon_color
+          label: Icon Color
+          type: string
+        - name: border_color
+          label: Block / Topic Border Color
+          type: string
+        - name: topic_font
+          label: Topic Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: topic_size
+          label: Topic Font Size (px)
+          type: number
+          options:
+            min: 8
+            max: 22
+      - name: closing
+        label: Closing Question
+        type: object
         fields:
-          - { name: page_index, label: Page Index, type: string }
-          - { name: page_index_detail, label: Page Index Description, type: string }
-          - { name: hero_line1, label: Hero - Line 1, type: string }
-          - { name: hero_emphasis, label: Hero - Emphasized Line, type: string }
-          - { name: hero_lead, label: Hero Description, type: text }
-          - name: featured
-            label: Featured Publication
-            type: object
-            fields:
-              - { name: image, label: Featured Image, type: image }
-              - { name: image_alt, label: Featured Image Alt Text, type: string }
-              - { name: kicker, label: Label, type: string }
-              - { name: title, label: Title, type: text }
-              - { name: description, label: Description, type: text }
-              - { name: metric1_value, label: Metric 1 Value, type: string }
-              - { name: metric1_label, label: Metric 1 Label, type: string }
-              - { name: metric2_value, label: Metric 2 Value, type: string }
-              - { name: metric2_label, label: Metric 2 Label, type: string }
-              - { name: url, label: Paper URL, type: string }
-              - { name: button_label, label: Button Label, type: string }
-          - { name: section_kicker_label, label: Publication List Label, type: string }
-          - { name: section_kicker_text, label: Publication List Label Description, type: string }
-          - { name: section_heading, label: Publication List Heading, type: string }
-          - name: items
-            label: Publication List
-            type: object
-            list:
-              collapsible: { collapsed: true, summary: "{year} — {title}" }
-            fields:
-              - { name: year, label: Year, type: string, required: true }
-              - { name: title, label: Paper Title, type: text, required: true }
-              - { name: venue, label: Venue, type: string }
-              - { name: tag, label: Tag, type: string }
-              - { name: url, label: Paper URL / DOI, type: string }
-
-      - name: join
-        label: Join Us
-        type: file
-        path: _data/join.yml
-        format: yaml
-        operations: { create: false, rename: false, delete: false }
+        - name: title_font
+          label: Closing Heading Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Closing Heading Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Closing Heading Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Closing Heading Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Closing Heading Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Closing Heading Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+    - name: professor
+      label: Professor Page
+      type: object
+      fields:
+      - name: hero
+        label: Hero
+        type: object
         fields:
-          - { name: page_index, label: Page Index, type: string }
-          - { name: page_index_detail, label: Page Index Description, type: string }
-          - { name: recruiting_status, label: Recruiting Status, type: string }
-          - { name: hero_line1, label: Hero - Line 1, type: string }
-          - { name: hero_emphasis, label: Hero - Emphasized Line, type: string }
-          - { name: hero_lead, label: Hero Description, type: text }
-          - { name: who_kicker_label, label: Who Section Label, type: string }
-          - { name: who_kicker_text, label: Who Section Label Description, type: string }
-          - { name: who_heading, label: Who Section Heading, type: text }
-          - { name: who_description, label: Who Section Description, type: text }
-          - name: fit_items
-            label: Research Fit Items
-            type: string
-            list: { min: 1 }
-          - { name: apply_kicker_label, label: Apply Section Label, type: string }
-          - { name: apply_kicker_text, label: Apply Section Label Description, type: string }
-          - name: steps
-            label: Application Steps
-            type: object
-            list:
-              min: 1
-              collapsible: { collapsed: true, summary: "{index}. {title}" }
-            fields:
-              - { name: title, label: Step Title, type: string, required: true }
-              - { name: description, label: Step Description, type: text }
-          - { name: cta_text, label: CTA Text, type: string }
-          - { name: cta_name, label: CTA Contact Name, type: string }
-          - { name: email_subject, label: Email Subject, type: string }
-
-  - name: developer
-    label: Advanced / Developer
-    type: group
-    items:
-      - { name: home_template, label: Home Template, type: file, path: index.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: research_template, label: Research Template, type: file, path: research.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: professor_template, label: Professor Template, type: file, path: professor.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: team_template, label: Team Template, type: file, path: team.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: publications_template, label: Publications Template, type: file, path: publications.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: join_template, label: Join Template, type: file, path: join.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: header_template, label: Shared Header, type: file, path: _includes/site-header.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: footer_template, label: Shared Footer, type: file, path: _includes/site-footer.html, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: styles, label: Main CSS, type: file, path: assets/styles.css, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: multipage_styles, label: Page CSS, type: file, path: assets/multipage.css, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: team_styles, label: Team CSS, type: file, path: assets/team.css, format: code, operations: { create: false, rename: false, delete: false } }
-      - { name: javascript, label: JavaScript, type: file, path: assets/script.js, format: code, operations: { create: false, rename: false, delete: false } }
+        - name: title_font
+          label: Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Title Max Size (px)
+          type: number
+          options:
+            min: 36
+            max: 180
+        - name: title_weight
+          label: Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Title Line Height
+          type: number
+          options:
+            min: 0.7
+            max: 1.8
+        - name: title_letter_spacing
+          label: Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.15
+            max: 0.15
+        - name: title_color
+          label: Title Color (CSS color)
+          type: string
+        - name: emphasis_font
+          label: Emphasis Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: emphasis_color
+          label: Emphasis Color (CSS color)
+          type: string
+        - name: lead_font
+          label: Description Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: lead_size
+          label: Description Size (px)
+          type: number
+          options:
+            min: 10
+            max: 40
+        - name: lead_line_height
+          label: Description Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: lead_color
+          label: Description Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: min_height
+          label: Minimum Height (px)
+          type: number
+          options:
+            min: 300
+            max: 1200
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: content_gap
+          label: Left/Right Column Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 200
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+      - name: profile
+        label: Profile / Research Interests
+        type: object
+        fields:
+        - name: title_font
+          label: Story / Interest Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Story / Interest Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Story / Interest Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Story / Interest Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Story / Interest Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Story / Interest Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: portrait_width
+          label: Portrait Column Max Width (px)
+          type: number
+          options:
+            min: 180
+            max: 700
+        - name: portrait_height
+          label: Portrait Image Height (px)
+          type: number
+          options:
+            min: 220
+            max: 900
+        - name: interest_font
+          label: Research Interest Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: interest_size
+          label: Research Interest Size (px)
+          type: number
+          options:
+            min: 12
+            max: 60
+        - name: image_background
+          label: Portrait Frame Background
+          type: string
+      - name: career
+        label: Career & Education
+        type: object
+        fields:
+        - name: title_font
+          label: Career Role Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Career Role Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Career Role Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Career Role Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Career Role Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Career Role Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: row_padding
+          label: Timeline Row Vertical Padding (px)
+          type: number
+          options:
+            min: 4
+            max: 80
+        - name: period_font
+          label: Timeline Period Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: period_size
+          label: Timeline Period Size (px)
+          type: number
+          options:
+            min: 8
+            max: 22
+    - name: team
+      label: Team Page
+      type: object
+      fields:
+      - name: hero
+        label: Hero
+        type: object
+        fields:
+        - name: title_font
+          label: Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Title Max Size (px)
+          type: number
+          options:
+            min: 36
+            max: 180
+        - name: title_weight
+          label: Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Title Line Height
+          type: number
+          options:
+            min: 0.7
+            max: 1.8
+        - name: title_letter_spacing
+          label: Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.15
+            max: 0.15
+        - name: title_color
+          label: Title Color (CSS color)
+          type: string
+        - name: emphasis_font
+          label: Emphasis Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: emphasis_color
+          label: Emphasis Color (CSS color)
+          type: string
+        - name: lead_font
+          label: Description Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: lead_size
+          label: Description Size (px)
+          type: number
+          options:
+            min: 10
+            max: 40
+        - name: lead_line_height
+          label: Description Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: lead_color
+          label: Description Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: min_height
+          label: Minimum Height (px)
+          type: number
+          options:
+            min: 300
+            max: 1200
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: content_gap
+          label: Left/Right Column Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 200
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+      - name: section
+        label: Team Section / Intro
+        type: object
+        fields:
+        - name: title_font
+          label: Section Label Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Section Label Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Section Label Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Section Label Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Section Label Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Section Label Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+      - name: grid
+        label: Member Grid
+        type: object
+        fields:
+        - name: columns
+          label: Desktop Columns
+          type: number
+          options:
+            min: 1
+            max: 4
+        - name: column_gap
+          label: Column Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 120
+        - name: row_gap
+          label: Row Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 160
+        - name: photo_ratio_width
+          label: Photo Aspect Ratio Width
+          type: number
+          options:
+            min: 1
+            max: 16
+        - name: photo_ratio_height
+          label: Photo Aspect Ratio Height
+          type: number
+          options:
+            min: 1
+            max: 16
+        - name: card_top_padding
+          label: Card Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 80
+        - name: card_border_color
+          label: Card Top Border Color
+          type: string
+      - name: card
+        label: Member Card
+        type: object
+        fields:
+        - name: name_font
+          label: Name Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: name_size
+          label: Name Size (px)
+          type: number
+          options:
+            min: 14
+            max: 72
+        - name: name_weight
+          label: Name Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: name_color
+          label: Name Color
+          type: string
+        - name: korean_font
+          label: Korean Name Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: korean_size
+          label: Korean Name Size (px)
+          type: number
+          options:
+            min: 8
+            max: 30
+        - name: korean_color
+          label: Korean Name Color
+          type: string
+        - name: role_font
+          label: Role Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: role_size
+          label: Role Size (px)
+          type: number
+          options:
+            min: 8
+            max: 24
+        - name: role_color
+          label: Role Color
+          type: string
+        - name: bio_font
+          label: Bio Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: bio_size
+          label: Bio Size (px)
+          type: number
+          options:
+            min: 9
+            max: 30
+        - name: bio_color
+          label: Bio Color
+          type: string
+        - name: tag_font
+          label: Interest Tag Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: tag_size
+          label: Interest Tag Size (px)
+          type: number
+          options:
+            min: 7
+            max: 22
+        - name: tag_color
+          label: Interest Tag Color
+          type: string
+        - name: tag_border
+          label: Interest Tag Border Color
+          type: string
+        - name: body_gap
+          label: Photo-to-Text Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 80
+        - name: links_size
+          label: Links Size (px)
+          type: number
+          options:
+            min: 8
+            max: 24
+        - name: links_color
+          label: Links Color
+          type: string
+    - name: publications
+      label: Publications Page
+      type: object
+      fields:
+      - name: hero
+        label: Hero
+        type: object
+        fields:
+        - name: title_font
+          label: Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Title Max Size (px)
+          type: number
+          options:
+            min: 36
+            max: 180
+        - name: title_weight
+          label: Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Title Line Height
+          type: number
+          options:
+            min: 0.7
+            max: 1.8
+        - name: title_letter_spacing
+          label: Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.15
+            max: 0.15
+        - name: title_color
+          label: Title Color (CSS color)
+          type: string
+        - name: emphasis_font
+          label: Emphasis Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: emphasis_color
+          label: Emphasis Color (CSS color)
+          type: string
+        - name: lead_font
+          label: Description Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: lead_size
+          label: Description Size (px)
+          type: number
+          options:
+            min: 10
+            max: 40
+        - name: lead_line_height
+          label: Description Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: lead_color
+          label: Description Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: min_height
+          label: Minimum Height (px)
+          type: number
+          options:
+            min: 300
+            max: 1200
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: content_gap
+          label: Left/Right Column Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 200
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+      - name: featured
+        label: Featured Publication
+        type: object
+        fields:
+        - name: title_font
+          label: Featured Paper Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Featured Paper Title Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Featured Paper Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Featured Paper Title Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Featured Paper Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Featured Paper Title Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: section_background
+          label: Outer Section Background
+          type: string
+        - name: card_padding
+          label: Featured Card Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 120
+        - name: image_min_height
+          label: Featured Image Min Height (px)
+          type: number
+          options:
+            min: 180
+            max: 900
+      - name: list
+        label: Publication List
+        type: object
+        fields:
+        - name: title_font
+          label: Publication Section Heading Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Publication Section Heading Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Publication Section Heading Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Publication Section Heading Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Publication Section Heading Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Publication Section Heading Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: paper_title_font
+          label: Paper Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: paper_title_size
+          label: Paper Title Size (px)
+          type: number
+          options:
+            min: 10
+            max: 50
+        - name: row_padding
+          label: Publication Row Vertical Padding (px)
+          type: number
+          options:
+            min: 4
+            max: 80
+        - name: border_color
+          label: Publication Row Border Color
+          type: string
+    - name: join
+      label: Join Us Page
+      type: object
+      fields:
+      - name: hero
+        label: Hero
+        type: object
+        fields:
+        - name: title_font
+          label: Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Title Max Size (px)
+          type: number
+          options:
+            min: 36
+            max: 180
+        - name: title_weight
+          label: Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Title Line Height
+          type: number
+          options:
+            min: 0.7
+            max: 1.8
+        - name: title_letter_spacing
+          label: Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.15
+            max: 0.15
+        - name: title_color
+          label: Title Color (CSS color)
+          type: string
+        - name: emphasis_font
+          label: Emphasis Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: emphasis_color
+          label: Emphasis Color (CSS color)
+          type: string
+        - name: lead_font
+          label: Description Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: lead_size
+          label: Description Size (px)
+          type: number
+          options:
+            min: 10
+            max: 40
+        - name: lead_line_height
+          label: Description Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: lead_color
+          label: Description Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: min_height
+          label: Minimum Height (px)
+          type: number
+          options:
+            min: 300
+            max: 1200
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: content_gap
+          label: Left/Right Column Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 200
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: status_color
+          label: Recruiting Status Color
+          type: string
+        - name: status_font
+          label: Recruiting Status Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: status_size
+          label: Recruiting Status Size (px)
+          type: number
+          options:
+            min: 8
+            max: 24
+      - name: who
+        label: Who We Are Looking For
+        type: object
+        fields:
+        - name: title_font
+          label: Who Section Heading Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Who Section Heading Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Who Section Heading Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Who Section Heading Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Who Section Heading Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Who Section Heading Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: item_size
+          label: Research Fit Item Size (px)
+          type: number
+          options:
+            min: 10
+            max: 32
+      - name: application
+        label: Application Steps
+        type: object
+        fields:
+        - name: title_font
+          label: Application Step Title Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: title_size
+          label: Application Step Title Size (px)
+          type: number
+          options:
+            min: 14
+            max: 120
+        - name: title_weight
+          label: Application Step Title Weight
+          type: select
+          options:
+            values:
+            - name: '400'
+              label: 400 Regular
+            - name: '500'
+              label: 500 Medium
+            - name: '600'
+              label: 600 SemiBold
+            - name: '700'
+              label: 700 Bold
+        - name: title_line_height
+          label: Application Step Title Line Height
+          type: number
+          options:
+            min: 0.8
+            max: 2.0
+        - name: title_letter_spacing
+          label: Application Step Title Letter Spacing (em)
+          type: number
+          options:
+            min: -0.12
+            max: 0.12
+        - name: title_color
+          label: Application Step Title Color (CSS color)
+          type: string
+        - name: body_font
+          label: Body Font
+          type: select
+          options:
+            values:
+            - name: manrope
+              label: Manrope
+            - name: newsreader
+              label: Newsreader
+            - name: dm-mono
+              label: DM Mono
+            - name: system-sans
+              label: System Sans
+            - name: system-serif
+              label: System Serif
+        - name: body_size
+          label: Body Size (px)
+          type: number
+          options:
+            min: 9
+            max: 36
+        - name: body_line_height
+          label: Body Line Height
+          type: number
+          options:
+            min: 1
+            max: 2.4
+        - name: body_color
+          label: Body Color (CSS color)
+          type: string
+        - name: accent_color
+          label: Accent Color (CSS color)
+          type: string
+        - name: background
+          label: Background Color (CSS color)
+          type: string
+        - name: padding_top
+          label: Top Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: padding_bottom
+          label: Bottom Padding (px)
+          type: number
+          options:
+            min: 0
+            max: 260
+        - name: gap
+          label: Main Gap (px)
+          type: number
+          options:
+            min: 0
+            max: 220
+        - name: text_align
+          label: Text Alignment
+          type: select
+          options:
+            values:
+            - name: left
+              label: Left
+            - name: center
+              label: Center
+            - name: right
+              label: Right
+        - name: offset_x
+          label: Horizontal Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: offset_y
+          label: Vertical Offset (px)
+          type: number
+          options:
+            min: -240
+            max: 240
+        - name: row_padding
+          label: Application Step Vertical Padding (px)
+          type: number
+          options:
+            min: 4
+            max: 80
+        - name: cta_color
+          label: Application CTA Text Color
+          type: string
+        - name: border_color
+          label: Application Divider Color
+          type: string
+  - name: home
+    label: Home
+    type: file
+    path: _data/home.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: eyebrow
+      label: Eyebrow
+      type: string
+    - name: hero_image
+      label: Hero Background Image
+      type: image
+      required: true
+    - name: hero_image_alt
+      label: Hero Image Alt Text
+      type: string
+    - name: hero_line1
+      label: Hero - Line 1
+      type: string
+    - name: hero_emphasis
+      label: Hero - Emphasized Line
+      type: string
+    - name: hero_line3
+      label: Hero - Line 3
+      type: string
+    - name: intro
+      label: Introduction
+      type: text
+    - name: primary_cta_label
+      label: Research Button Label
+      type: string
+    - name: secondary_cta_label
+      label: Open Positions Link Label
+      type: string
+    - name: research_scope
+      label: Research Scope
+      type: string
+      list:
+        min: 1
+        max: 8
+    - name: recruiting_kicker
+      label: Recruiting Label
+      type: string
+    - name: recruiting_line1
+      label: Recruiting - Line 1
+      type: string
+    - name: recruiting_line2
+      label: Recruiting - Line 2
+      type: string
+    - name: recruiting_cta_label
+      label: Recruiting Button Label
+      type: string
+  - name: research
+    label: Research
+    type: file
+    path: _data/research.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: page_index
+      label: Page Index
+      type: string
+    - name: page_index_detail
+      label: Page Index Description
+      type: string
+    - name: hero_line1
+      label: Hero - Line 1
+      type: string
+    - name: hero_emphasis
+      label: Hero - Emphasized Line
+      type: string
+    - name: hero_lead
+      label: Hero Description
+      type: text
+    - name: intro_kicker_label
+      label: Intro Label
+      type: string
+    - name: intro_kicker_text
+      label: Intro Label Description
+      type: string
+    - name: intro_heading_before
+      label: Intro Heading - Before Emphasis
+      type: string
+    - name: intro_heading_emphasis
+      label: Intro Heading - Emphasis
+      type: string
+    - name: intro_heading_after
+      label: Intro Heading - After Emphasis
+      type: string
+    - name: intro_paragraphs
+      label: Intro Paragraphs
+      type: text
+      list:
+        min: 1
+    - name: areas
+      label: Research Areas
+      type: object
+      list:
+        min: 1
+        collapsible:
+          collapsed: true
+          summary: '{index}. {title_line1} {title_line2}'
+      fields:
+      - name: icon
+        label: Lucide Icon Name
+        type: string
+      - name: title_line1
+        label: Title - Line 1
+        type: string
+        required: true
+      - name: title_line2
+        label: Title - Line 2
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: topics
+        label: Topics
+        type: string
+        list:
+          min: 1
+    - name: question_kicker_label
+      label: Closing Label
+      type: string
+    - name: question_kicker_text
+      label: Closing Label Description
+      type: string
+    - name: question
+      label: Closing Question
+      type: text
+  - name: professor
+    label: Professor
+    type: file
+    path: _data/professor.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: page_index
+      label: Page Index
+      type: string
+    - name: page_index_detail
+      label: Page Index Description
+      type: string
+    - name: name_en
+      label: English Name
+      type: string
+      required: true
+    - name: name_ko
+      label: Korean Name
+      type: string
+    - name: position
+      label: Position
+      type: text
+    - name: image
+      label: Professor Photo
+      type: image
+      required: true
+    - name: portrait_caption
+      label: Photo Caption
+      type: string
+    - name: portrait_subcaption
+      label: Photo Subcaption
+      type: string
+    - name: story_primary_before
+      label: Main Introduction - Before Emphasis
+      type: text
+    - name: story_primary_emphasis
+      label: Main Introduction - Emphasized Text
+      type: string
+    - name: story_primary_after
+      label: Main Introduction - After Emphasis
+      type: text
+    - name: story_secondary
+      label: Secondary Introduction
+      type: text
+    - name: interests
+      label: Research Interests
+      type: string
+      list:
+        min: 1
+    - name: official_profile_url
+      label: Official SNU Profile URL
+      type: string
+    - name: career_kicker_label
+      label: Career Section Label
+      type: string
+    - name: career_kicker_text
+      label: Career Section Description
+      type: string
+    - name: career
+      label: Career & Education
+      type: object
+      list:
+        min: 1
+        collapsible:
+          collapsed: true
+          summary: '{period} — {role}'
+      fields:
+      - name: period
+        label: Period
+        type: string
+        required: true
+      - name: role
+        label: Position / Degree
+        type: string
+        required: true
+      - name: organization
+        label: Organization
+        type: string
+        required: true
+  - name: team
+    label: Team
+    type: file
+    path: _data/team.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: page_index
+      label: Page Index
+      type: string
+    - name: page_index_detail
+      label: Page Index Description
+      type: string
+    - name: hero_line1
+      label: Hero - Line 1
+      type: string
+    - name: hero_emphasis
+      label: Hero - Emphasized Line
+      type: string
+    - name: hero_lead
+      label: Hero Description
+      type: text
+    - name: section_kicker_label
+      label: Team Section Label
+      type: string
+    - name: section_kicker_text
+      label: Team Section Description
+      type: string
+    - name: students
+      label: Students
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{name_en} — {role}'
+      fields:
+      - name: name_en
+        label: English Name
+        type: string
+        required: true
+      - name: name_ko
+        label: Korean Name
+        type: string
+      - name: role
+        label: Degree / Role
+        type: string
+        required: true
+      - name: image
+        label: Profile Photo
+        type: image
+      - name: email
+        label: Email
+        type: string
+      - name: bio
+        label: Short Bio
+        type: text
+      - name: research_interests
+        label: Research Interests
+        type: string
+        list: true
+      - name: website
+        label: Personal Website URL
+        type: string
+      - name: github
+        label: GitHub URL
+        type: string
+      - name: linkedin
+        label: LinkedIn URL
+        type: string
+  - name: publications
+    label: Publications
+    type: file
+    path: _data/publications.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: page_index
+      label: Page Index
+      type: string
+    - name: page_index_detail
+      label: Page Index Description
+      type: string
+    - name: hero_line1
+      label: Hero - Line 1
+      type: string
+    - name: hero_emphasis
+      label: Hero - Emphasized Line
+      type: string
+    - name: hero_lead
+      label: Hero Description
+      type: text
+    - name: featured
+      label: Featured Publication
+      type: object
+      fields:
+      - name: image
+        label: Featured Image
+        type: image
+      - name: image_alt
+        label: Featured Image Alt Text
+        type: string
+      - name: kicker
+        label: Label
+        type: string
+      - name: title
+        label: Title
+        type: text
+      - name: description
+        label: Description
+        type: text
+      - name: metric1_value
+        label: Metric 1 Value
+        type: string
+      - name: metric1_label
+        label: Metric 1 Label
+        type: string
+      - name: metric2_value
+        label: Metric 2 Value
+        type: string
+      - name: metric2_label
+        label: Metric 2 Label
+        type: string
+      - name: url
+        label: Paper URL
+        type: string
+      - name: button_label
+        label: Button Label
+        type: string
+    - name: section_kicker_label
+      label: Publication List Label
+      type: string
+    - name: section_kicker_text
+      label: Publication List Label Description
+      type: string
+    - name: section_heading
+      label: Publication List Heading
+      type: string
+    - name: items
+      label: Publication List
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{year} — {title}'
+      fields:
+      - name: year
+        label: Year
+        type: string
+        required: true
+      - name: title
+        label: Paper Title
+        type: text
+        required: true
+      - name: venue
+        label: Venue
+        type: string
+      - name: tag
+        label: Tag
+        type: string
+      - name: url
+        label: Paper URL / DOI
+        type: string
+  - name: join
+    label: Join Us
+    type: file
+    path: _data/join.yml
+    format: yaml
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+    - name: page_index
+      label: Page Index
+      type: string
+    - name: page_index_detail
+      label: Page Index Description
+      type: string
+    - name: recruiting_status
+      label: Recruiting Status
+      type: string
+    - name: hero_line1
+      label: Hero - Line 1
+      type: string
+    - name: hero_emphasis
+      label: Hero - Emphasized Line
+      type: string
+    - name: hero_lead
+      label: Hero Description
+      type: text
+    - name: who_kicker_label
+      label: Who Section Label
+      type: string
+    - name: who_kicker_text
+      label: Who Section Label Description
+      type: string
+    - name: who_heading
+      label: Who Section Heading
+      type: text
+    - name: who_description
+      label: Who Section Description
+      type: text
+    - name: fit_items
+      label: Research Fit Items
+      type: string
+      list:
+        min: 1
+    - name: apply_kicker_label
+      label: Apply Section Label
+      type: string
+    - name: apply_kicker_text
+      label: Apply Section Label Description
+      type: string
+    - name: steps
+      label: Application Steps
+      type: object
+      list:
+        min: 1
+        collapsible:
+          collapsed: true
+          summary: '{index}. {title}'
+      fields:
+      - name: title
+        label: Step Title
+        type: string
+        required: true
+      - name: description
+        label: Step Description
+        type: text
+    - name: cta_text
+      label: CTA Text
+      type: string
+    - name: cta_name
+      label: CTA Contact Name
+      type: string
+    - name: email_subject
+      label: Email Subject
+      type: string
+- name: developer
+  label: Advanced / Developer
+  type: group
+  items:
+  - name: home_template
+    label: Home Template
+    type: file
+    path: index.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: research_template
+    label: Research Template
+    type: file
+    path: research.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: professor_template
+    label: Professor Template
+    type: file
+    path: professor.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: team_template
+    label: Team Template
+    type: file
+    path: team.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: publications_template
+    label: Publications Template
+    type: file
+    path: publications.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: join_template
+    label: Join Template
+    type: file
+    path: join.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: design_include
+    label: Dynamic Design CSS
+    type: file
+    path: _includes/design-settings.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: header_template
+    label: Shared Header
+    type: file
+    path: _includes/site-header.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: footer_template
+    label: Shared Footer
+    type: file
+    path: _includes/site-footer.html
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: styles
+    label: Main CSS
+    type: file
+    path: assets/styles.css
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: multipage_styles
+    label: Page CSS
+    type: file
+    path: assets/multipage.css
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: team_styles
+    label: Team CSS
+    type: file
+    path: assets/team.css
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false
+  - name: javascript
+    label: JavaScript
+    type: file
+    path: assets/script.js
+    format: code
+    operations:
+      create: false
+      rename: false
+      delete: false

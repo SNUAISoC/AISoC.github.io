@@ -5,11 +5,11 @@
   <title>Join Us · AI SoC Lab</title><script>document.documentElement.classList.add("js")</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=20260908"><link rel="stylesheet" href="assets/multipage.css?v=20260908"><script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script><script src="assets/script.js?v=20260908" defer></script>
-</head><body class="inner-page page-transition"><a class="skip-link" href="#main">Skip to content</a>
+</head><body class="inner-page page-transition join-page"><a class="skip-link" href="#main">Skip to content</a>
   {% include site-header.html active="join" %}
   <main class="page-main" id="main">
     <section class="page-hero join-hero"><div class="shell page-hero-content"><p class="page-hero-index"><span>{{ site.data.join.page_index }}</span>{{ site.data.join.page_index_detail }}</p><div class="reveal"><p class="join-status-large"><i></i> {{ site.data.join.recruiting_status }}</p><h1>{{ site.data.join.hero_line1 }}<br><em>{{ site.data.join.hero_emphasis }}</em></h1><p class="lead">{{ site.data.join.hero_lead }}</p></div></div></section>
-    <section class="section-pad"><div class="shell join-info"><div><p class="section-kicker reveal"><span>{{ site.data.join.who_kicker_label }}</span> {{ site.data.join.who_kicker_text }}</p><h2 class="reveal">{{ site.data.join.who_heading }}</h2></div><div class="join-info-copy reveal"><p>{{ site.data.join.who_description }}</p><div class="fit-list">
+    <section class="join-who-section section-pad"><div class="shell join-info"><div><p class="section-kicker reveal"><span>{{ site.data.join.who_kicker_label }}</span> {{ site.data.join.who_kicker_text }}</p><h2 class="reveal">{{ site.data.join.who_heading }}</h2></div><div class="join-info-copy reveal"><p>{{ site.data.join.who_description }}</p><div class="fit-list">
       {% for item in site.data.join.fit_items %}
       <div><span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><p>{{ item }}</p></div>
       {% endfor %}
