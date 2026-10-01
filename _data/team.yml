@@ -12,5 +12,6 @@ students:
     role: MS
     image: assets/images/aisoc-hero-1.png
     email: ssw140414@gmail.com
+    bio: ddddd
     research_interests:
       - VLSI
