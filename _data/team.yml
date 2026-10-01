@@ -2,7 +2,16 @@ page_index: 03 / Team
 page_index_detail: Students & Researchers
 hero_line1: People who build
 hero_emphasis: intelligent silicon.
-hero_lead: Meet the students and researchers exploring AI processors, computer architecture, VLSI, and hardware–software co-design.
+hero_lead: Meet the students and researchers exploring AI processors, computer
+  architecture, VLSI, and hardware–software co-design.
 section_kicker_label: Team
 section_kicker_text: Students & Researchers
-students: []
+students:
+  - name_en: Seungwoo Son
+    name_ko: 손승우
+    role: BS in Yonsei EE
+    image: assets/images/aisoc-hero-1.png
+    email: ssw140414@gmail.com
+    research_interests:
+      - VLSI
+  - {}
