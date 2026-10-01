@@ -1,0 +1,24 @@
+typography:
+  body_font: manrope
+  heading_font: manrope
+  accent_font: newsreader
+  body_size: 16
+  line_height: 1.6
+  hero_title_size: 112
+  page_title_size: 112
+  nav_size: 13
+layout:
+  content_width: 1180
+  side_padding: 24
+  section_spacing: 136
+  header_height: 82
+hero:
+  text_align: left
+  text_width: 760
+  vertical_offset: 0
+  column_gap: 80
+colors:
+  ink: "#07111f"
+  paper: "#f3f0e8"
+  accent: "#d87945"
+  highlight: "#5bd6e5"
