@@ -1,0 +1,68 @@
+---
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Students and researchers of the AI System-on-Chip Laboratory at Seoul National University."><meta name="theme-color" content="#f3f0e8">
+  <title>Team · AI SoC Lab</title><script>document.documentElement.classList.add("js")</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css?v=20260908"><link rel="stylesheet" href="assets/multipage.css?v=20260908"><link rel="stylesheet" href="assets/team.css?v=20261001">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script><script src="assets/script.js?v=20260908" defer></script>
+</head>
+<body class="inner-page page-transition team-page"><a class="skip-link" href="#main">Skip to content</a>
+  {% include site-header.html active="team" %}
+  <main class="page-main" id="main">
+    <section class="page-hero team-hero">
+      <div class="shell page-hero-content">
+        <p class="page-hero-index"><span>{{ site.data.team.page_index }}</span>{{ site.data.team.page_index_detail }}</p>
+        <div class="reveal"><h1>{{ site.data.team.hero_line1 }}<br><em>{{ site.data.team.hero_emphasis }}</em></h1><p class="lead">{{ site.data.team.hero_lead }}</p></div>
+      </div>
+    </section>
+    <section class="team-section section-pad">
+      <div class="shell team-layout">
+        <div class="team-intro reveal">
+          <p class="section-kicker"><span>{{ site.data.team.section_kicker_label }}</span> {{ site.data.team.section_kicker_text }}</p>
+        </div>
+        {% if site.data.team.students and site.data.team.students.size > 0 %}
+        <div class="team-grid">
+          {% for member in site.data.team.students %}
+          <article class="member-card reveal">
+            <div class="member-photo">
+              {% if member.image %}
+                <img src="{{ member.image }}" alt="{{ member.name_en }}" loading="lazy">
+              {% else %}
+                <div class="member-placeholder" aria-hidden="true">{{ member.name_en | slice: 0, 1 }}</div>
+              {% endif %}
+            </div>
+            <div class="member-body">
+              <p class="member-role">{{ member.role }}</p>
+              <h2>{{ member.name_en }}{% if member.name_ko %}<span>{{ member.name_ko }}</span>{% endif %}</h2>
+              {% if member.bio %}<p class="member-bio">{{ member.bio }}</p>{% endif %}
+              {% if member.research_interests and member.research_interests.size > 0 %}
+              <ul class="member-interests">
+                {% for item in member.research_interests %}<li>{{ item }}</li>{% endfor %}
+              </ul>
+              {% endif %}
+              <div class="member-links">
+                {% if member.email %}<a href="mailto:{{ member.email }}" aria-label="Email {{ member.name_en }}"><i data-lucide="mail"></i>Email</a>{% endif %}
+                {% if member.website %}<a href="{{ member.website }}" target="_blank" rel="noopener"><i data-lucide="globe"></i>Website</a>{% endif %}
+                {% if member.github %}<a href="{{ member.github }}" target="_blank" rel="noopener"><i data-lucide="github"></i>GitHub</a>{% endif %}
+                {% if member.linkedin %}<a href="{{ member.linkedin }}" target="_blank" rel="noopener"><i data-lucide="linkedin"></i>LinkedIn</a>{% endif %}
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="team-empty reveal">
+          <p>Team profiles can be added from <strong>Pages CMS → Website Content → Team → Students</strong>.</p>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+  {% include site-footer.html %}
+</body>
+</html>

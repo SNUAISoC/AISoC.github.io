@@ -45,6 +45,84 @@ content:
           - { name: footer_tagline_line2, label: Footer Tagline - Line 2, type: string }
           - { name: copyright, label: Copyright Text, type: string }
 
+      - name: design
+        label: Design Settings
+        type: file
+        path: _data/design.yml
+        format: yaml
+        operations: { create: false, rename: false, delete: false }
+        fields:
+          - name: typography
+            label: Typography
+            type: object
+            fields:
+              - name: body_font
+                label: Body Font
+                type: select
+                options:
+                  values:
+                    - { name: manrope, label: Manrope }
+                    - { name: newsreader, label: Newsreader }
+                    - { name: dm-mono, label: DM Mono }
+                    - { name: system-sans, label: System Sans }
+                    - { name: system-serif, label: System Serif }
+              - name: heading_font
+                label: Heading Font
+                type: select
+                options:
+                  values:
+                    - { name: manrope, label: Manrope }
+                    - { name: newsreader, label: Newsreader }
+                    - { name: dm-mono, label: DM Mono }
+                    - { name: system-sans, label: System Sans }
+                    - { name: system-serif, label: System Serif }
+              - name: accent_font
+                label: Accent / Serif Font
+                type: select
+                options:
+                  values:
+                    - { name: newsreader, label: Newsreader }
+                    - { name: manrope, label: Manrope }
+                    - { name: dm-mono, label: DM Mono }
+                    - { name: system-sans, label: System Sans }
+                    - { name: system-serif, label: System Serif }
+              - { name: body_size, label: Body Font Size (px), type: number, options: { min: 12, max: 24 } }
+              - { name: line_height, label: Body Line Height, type: number, options: { min: 1, max: 2.2 } }
+              - { name: hero_title_size, label: Home Hero Max Title Size (px), type: number, options: { min: 64, max: 180 } }
+              - { name: page_title_size, label: Inner Page Max Title Size (px), type: number, options: { min: 56, max: 160 } }
+              - { name: nav_size, label: Navigation Font Size (px), type: number, options: { min: 10, max: 20 } }
+          - name: layout
+            label: Layout & Spacing
+            type: object
+            fields:
+              - { name: content_width, label: Maximum Content Width (px), type: number, options: { min: 900, max: 1600 } }
+              - { name: side_padding, label: Minimum Side Padding (px), type: number, options: { min: 12, max: 96 } }
+              - { name: section_spacing, label: Section Top / Bottom Spacing (px), type: number, options: { min: 40, max: 240 } }
+              - { name: header_height, label: Header Height (px), type: number, options: { min: 56, max: 120 } }
+          - name: hero
+            label: Home Hero Position
+            type: object
+            fields:
+              - name: text_align
+                label: Text Alignment
+                type: select
+                options:
+                  values:
+                    - { name: left, label: Left }
+                    - { name: center, label: Center }
+                    - { name: right, label: Right }
+              - { name: text_width, label: Hero Text Maximum Width (px), type: number, options: { min: 420, max: 1100 } }
+              - { name: vertical_offset, label: Hero Text Vertical Offset (px), type: number, options: { min: -180, max: 180 } }
+              - { name: column_gap, label: Hero Column Gap (px), type: number, options: { min: 20, max: 160 } }
+          - name: colors
+            label: Colors
+            type: object
+            fields:
+              - { name: ink, label: Main Dark Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
+              - { name: paper, label: Main Background Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
+              - { name: accent, label: Accent / Copper Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
+              - { name: highlight, label: Highlight / Cyan Color (HEX), type: string, pattern: '^#[0-9A-Fa-f]{6}$' }
+
       - name: home
         label: Home
         type: file
@@ -147,6 +225,40 @@ content:
               - { name: role, label: Position / Degree, type: string, required: true }
               - { name: organization, label: Organization, type: string, required: true }
 
+      - name: team
+        label: Team
+        type: file
+        path: _data/team.yml
+        format: yaml
+        operations: { create: false, rename: false, delete: false }
+        fields:
+          - { name: page_index, label: Page Index, type: string }
+          - { name: page_index_detail, label: Page Index Description, type: string }
+          - { name: hero_line1, label: Hero - Line 1, type: string }
+          - { name: hero_emphasis, label: Hero - Emphasized Line, type: string }
+          - { name: hero_lead, label: Hero Description, type: text }
+          - { name: section_kicker_label, label: Team Section Label, type: string }
+          - { name: section_kicker_text, label: Team Section Description, type: string }
+          - name: students
+            label: Students
+            type: object
+            list:
+              collapsible: { collapsed: true, summary: "{name_en} — {role}" }
+            fields:
+              - { name: name_en, label: English Name, type: string, required: true }
+              - { name: name_ko, label: Korean Name, type: string }
+              - { name: role, label: Degree / Role, type: string, required: true }
+              - { name: image, label: Profile Photo, type: image }
+              - { name: email, label: Email, type: string }
+              - { name: bio, label: Short Bio, type: text }
+              - name: research_interests
+                label: Research Interests
+                type: string
+                list: true
+              - { name: website, label: Personal Website URL, type: string }
+              - { name: github, label: GitHub URL, type: string }
+              - { name: linkedin, label: LinkedIn URL, type: string }
+
       - name: publications
         label: Publications
         type: file
@@ -163,7 +275,7 @@ content:
             label: Featured Publication
             type: object
             fields:
-              - { name: image, label: Featured Image, type: image, required: true }
+              - { name: image, label: Featured Image, type: image }
               - { name: image_alt, label: Featured Image Alt Text, type: string }
               - { name: kicker, label: Label, type: string }
               - { name: title, label: Title, type: text }
@@ -232,10 +344,12 @@ content:
       - { name: home_template, label: Home Template, type: file, path: index.html, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: research_template, label: Research Template, type: file, path: research.html, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: professor_template, label: Professor Template, type: file, path: professor.html, format: code, operations: { create: false, rename: false, delete: false } }
+      - { name: team_template, label: Team Template, type: file, path: team.html, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: publications_template, label: Publications Template, type: file, path: publications.html, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: join_template, label: Join Template, type: file, path: join.html, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: header_template, label: Shared Header, type: file, path: _includes/site-header.html, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: footer_template, label: Shared Footer, type: file, path: _includes/site-footer.html, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: styles, label: Main CSS, type: file, path: assets/styles.css, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: multipage_styles, label: Page CSS, type: file, path: assets/multipage.css, format: code, operations: { create: false, rename: false, delete: false } }
+      - { name: team_styles, label: Team CSS, type: file, path: assets/team.css, format: code, operations: { create: false, rename: false, delete: false } }
       - { name: javascript, label: JavaScript, type: file, path: assets/script.js, format: code, operations: { create: false, rename: false, delete: false } }
